@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="./include/head.html">
+    <title>注册</title>
+    <script th:inline="javascript" type="text/javascript">
+        $().ready(function () {
+            $("#pageForm").validate({
+                rules: {
+                    account: {
+                        required: true
+                    },
+                    password: {
+                        required: true
+                    },
+                    userName: {
+                        required: true
+                    },
+                    validateCode: {
+                        required: true
+                    }
+                },
+                messages: {
+                    account: {
+                        required: "请填写账号"
+                    },
+                    password: {
+                        required: "请填写密码"
+                    },
+                    userName: {
+                        required: "请填写用户名称"
+                    },
+                    validateCode: {
+                        required: "请填写验证码"
+                    }
+                }
+            });
+        });
+
+        //刷新验证码
+        $(function () {
+
+            alert("abc");
+
+            $("#captcha").click(function () {
+                $("#captcha").attr("src", "/getCaptcha?code=" + Math.random());
+            });
+        });
+
+        // 如果在框架中，则跳转刷新上级页面
+        if (self.frameElement != null && self.frameElement.tagName == "IFRAME") {
+            parent.location.reload();
+        }
+    </script>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <div>
+        <div>
+            <div>注册</div>
+            <form id="pageForm" name="pageForm" action="register" method="post" style="margin: 0;">
+                <div>
+                    <p>账号</p>
+                    <input type="text" id="account" name="account" th:value="${account }"/>
+                </div>
+                <div id="errorMsg" class="error"><span th:text="${errorAccount }"></span><br/></div>
+                <div>
+                    <p>密码</p>
+                    <input type="password" id="password" name="password"/>
+                </div>
+                <div id="errorMsg" class="error"><span th:text="${errorPassword }"></span><br/></div>
+                <div>
+                    <p>用户名称</p>
+                    <input type="text" id="userName" name="userName" th:value="${userName }"/>
+                </div>
+                <div id="errorMsg" class="error"><span th:text="${errorUserName }"></span><br/></div>
+                <div>
+                    <p>验证码</p>
+                    <input type="text" id="validateCode" name="validateCode"/><img id="captcha" src="getCaptcha"/>
+                </div>
+                <div id="errorMsg" class="error"><span th:text="${errorVerify }"></span><br/></div>
+                <input type="submit" value="注册"/>
+                <div id="errorZone">
+                    <div id="errorMsg" class="error"><span th:text="${errorMsg }"></span><br/></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>show name</title>
+	<script th:inline="javascript">
+        /*<![CDATA[*/
+        //创建XMLHttpRequest对象
+        var xhr = new XMLHttpRequest();
+        //配置请求方式、请求地址以及是否同步
+        xhr.open('POST', './blobTest2', true);
+        //设置请求结果类型为blob
+        xhr.responseType = 'blob';
+        //请求成功回调函数
+        xhr.onload = function(e) {
+            if (this.status === 200) {//请求成功
+                //获取blob对象
+                var blob = this.response;
+                //获取blob对象地址，并把值赋给容器
+                document.getElementById("sound").src = URL.createObjectURL(blob);
+            } else {
+                alert("error");
+			}
+        };
+        xhr.send();
+        /*]]>*/
+	</script>
+</head>
+<body>
+	<h1>Welcome</h1>
+	<video id="sound" width="200" controls="controls"></video>
+</body>
+</html>

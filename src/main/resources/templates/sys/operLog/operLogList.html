@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="./include/head.html">
+    <title>oper log list</title>
+</head>
+<body>
+
+<h2>operLogList</h2>
+<form id="pageForm" name="pageForm" method="post" action="">
+    <div>
+        <table border="1">
+            <tr>
+                <td>操作人账号</td>
+                <td>操作人名称</td>
+                <td>操作人角色</td>
+                <td>IP地址</td>
+                <td>操作类型</td>
+                <td>操作功能</td>
+                <td>操作是否成功</td>
+                <td>本次操作的结果</td>
+                <td>创建时间</td>
+                <td>最近更新时间</td>
+            </tr>
+
+            <tr th:each="item : ${pageInfo.list }">
+                <td th:text="${item.operAccount }"></td>
+                <td th:text="${item.operName }"></td>
+                <td th:text="${item.operRole }"></td>
+                <td th:text="${item.operIP }"></td>
+                <td th:text="${item.operType }"></td>
+                <td th:text="${item.operFunction }"></td>
+                <td th:text="${item.ifSuccess }"></td>
+                <td th:text="${item.resultContent }"></td>
+                <td th:text="${item.createTime }"></td>
+                <td th:text="${item.updateTime }"></td>
+            </tr>
+
+        </table>
+    </div>
+</form>
+</body>
+</html>
