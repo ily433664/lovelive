@@ -18,19 +18,19 @@
             <form id="pageForm" name="pageForm" action="#" th:action="@{/login}" method="post" style="margin: 0;">
                 <div>
                     <p>用户名</p>
-                    <input type="text" id="username" name="username" th:value="${username}"/>
+                    <label for="username"><input type="text" id="username" name="username" th:value="${username}"/></label>
                 </div>
                 <div>
                     <p>密码</p>
-                    <input type="password" id="password" name="password"/>
+                    <label for="password"><input type="password" id="password" name="password"/></label>
                 </div>
                 <div>
                     <p>是否记住我</p>
-                    <input type="checkbox" name="rememberMe">
+                    <label for="rememberMe"><input type="checkbox" id="rememberMe" name="rememberMe"></label>
                 </div>
                 <div>
                     <p>验证码</p>
-                    <input type="text" id="validateCode" name="validateCode"/>
+                    <label for="validateCode"><input type="text" id="validateCode" name="validateCode"/></label>
                     <img id="captcha" src="getCaptcha" onclick="this.src='getCaptcha?d='+new Date()*1"/>
                 </div>
                 <input type="submit" value="登录"/>

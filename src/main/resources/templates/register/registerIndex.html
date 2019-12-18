@@ -66,24 +66,24 @@
             <form id="pageForm" name="pageForm" action="register" method="post" style="margin: 0;">
                 <div>
                     <p>账号</p>
-                    <input type="text" id="account" name="account" th:value="${account }"/>
+                    <label for="account"><input type="text" id="account" name="account" th:value="${account }"/></label>
                 </div>
-                <div id="errorMsg" class="error"><span th:text="${errorAccount }"></span><br/></div>
+                <div id="errorAccount" class="error"><span th:text="${errorAccount }"></span><br/></div>
                 <div>
                     <p>密码</p>
-                    <input type="password" id="password" name="password"/>
+                    <label for="password"><input type="password" id="password" name="password"/></label>
                 </div>
-                <div id="errorMsg" class="error"><span th:text="${errorPassword }"></span><br/></div>
+                <div id="errorPassword" class="error"><span th:text="${errorPassword }"></span><br/></div>
                 <div>
                     <p>用户名称</p>
-                    <input type="text" id="userName" name="userName" th:value="${userName }"/>
+                    <label for="userName"><input type="text" id="userName" name="userName" th:value="${userName }"/></label>
                 </div>
-                <div id="errorMsg" class="error"><span th:text="${errorUserName }"></span><br/></div>
+                <div id="errorUserName" class="error"><span th:text="${errorUserName }"></span><br/></div>
                 <div>
                     <p>验证码</p>
-                    <input type="text" id="validateCode" name="validateCode"/><img id="captcha" src="getCaptcha"/>
+                    <label for="validateCode"><input type="text" id="validateCode" name="validateCode"/><img id="captcha" src="getCaptcha"/></label>
                 </div>
-                <div id="errorMsg" class="error"><span th:text="${errorVerify }"></span><br/></div>
+                <div id="errorVerify" class="error"><span th:text="${errorVerify }"></span><br/></div>
                 <input type="submit" value="注册"/>
                 <div id="errorZone">
                     <div id="errorMsg" class="error"><span th:text="${errorMsg }"></span><br/></div>

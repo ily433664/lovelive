@@ -1,5 +1,7 @@
 package com.lovelive.sys.anno;
 
+import com.lovelive.sys.enums.OperTypeEnums;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -16,7 +18,8 @@ import java.lang.annotation.Target;
 @Target({ElementType.PARAMETER, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LogAnnotation {
-    String mold() default "";//类型
 
-    String methods() default "";//功能
+    OperTypeEnums mold() default OperTypeEnums.MULTIPLE;//操作类型
+
+    String description() default "";//方法说明
 }

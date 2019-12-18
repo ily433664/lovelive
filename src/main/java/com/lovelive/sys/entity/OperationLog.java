@@ -1,8 +1,8 @@
 package com.lovelive.sys.entity;
 
-import com.lovelive.sys.base.BaseEntity;
+import com.lovelive.common.base.BaseEntity;
 
-import java.io.Serializable;
+import javax.persistence.*;
 
 /**
  * @author dhe
@@ -11,31 +11,12 @@ import java.io.Serializable;
  * @Description: 操作日志
  * @date 2018年1月18日 下午5:57:00
  */
+@Entity
+@Table(name = "t_operation_log")
+public class OperationLog extends BaseEntity {
 
-public class OperationLog extends BaseEntity implements Serializable {
+    private static final long serialVersionUID = -601470489372751748L;
 
-    /**
-     * 操作类型：增加对象
-     */
-    public static final String OPER_TYPE_ADD = "ADD";
-    /**
-     * 操作类型：删除对象
-     */
-    public static final String OPER_TYPE_DELETE = "DELETE";
-    /**
-     * 操作类型：修改对象
-     */
-    public static final String OPER_TYPE_EDIT = "EDIT";
-    /**
-     * 操作类型：查询对象
-     */
-    public static final String OPER_TYPE_QUERY = "QUERY";
-    /**
-     * 操作类型：综合操作
-     */
-    public static final String OPER_TYPE_MULTIPLE = "MULTIPLE";
-    private static final long serialVersionUID = -6488649748640248632L;
-    private Integer id;
     /**
      * 操作人账号
      */
@@ -71,7 +52,13 @@ public class OperationLog extends BaseEntity implements Serializable {
     /**
      * 请求参数
      */
+    @Lob
     private String operParameter;
+    /**
+     * 代理
+     */
+    @Lob
+    private String userAgent;
     /**
      * 响应时间 ms
      */
@@ -79,7 +66,7 @@ public class OperationLog extends BaseEntity implements Serializable {
     /**
      * 操作是否成功,true:成功完成，没有系统异常   false:系统异常
      */
-    private Boolean ifSuccess = true;
+    private Boolean successed;
     /**
      * 本次操作的结果 ,如果系统异常则增加显示异常信息
      */
@@ -89,12 +76,8 @@ public class OperationLog extends BaseEntity implements Serializable {
         super();
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public OperationLog(String id) {
+        super(id);
     }
 
     public String getOperAccount() {
@@ -169,6 +152,14 @@ public class OperationLog extends BaseEntity implements Serializable {
         this.operParameter = operParameter;
     }
 
+    public String getUserAgent() {
+        return userAgent;
+    }
+
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
+
     public long getResponseTime() {
         return responseTime;
     }
@@ -177,12 +168,12 @@ public class OperationLog extends BaseEntity implements Serializable {
         this.responseTime = responseTime;
     }
 
-    public Boolean getIfSuccess() {
-        return ifSuccess;
+    public Boolean getSuccessed() {
+        return successed;
     }
 
-    public void setIfSuccess(Boolean ifSuccess) {
-        this.ifSuccess = ifSuccess;
+    public void setSuccessed(Boolean successed) {
+        this.successed = successed;
     }
 
     public String getResultContent() {

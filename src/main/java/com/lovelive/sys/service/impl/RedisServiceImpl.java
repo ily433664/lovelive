@@ -1,7 +1,8 @@
 package com.lovelive.sys.service.impl;
 
+import com.lovelive.common.base.BaseService;
 import com.lovelive.sys.service.IRedisService;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Service("redisService")
-public class RedisServiceImpl implements IRedisService {
+public class RedisServiceImpl extends BaseService implements IRedisService {
 
     private final StringRedisTemplate stringRedisTemplate;
 

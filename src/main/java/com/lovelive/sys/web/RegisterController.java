@@ -1,16 +1,12 @@
 package com.lovelive.sys.web;
 
-import com.lovelive.common.util.VerifyCodeUtils;
-import com.lovelive.sys.entity.OperationLog;
-import com.lovelive.sys.base.BaseController;
+import com.lovelive.common.base.BaseController;
+import com.lovelive.common.uitls.VerifyCodeUtils;
 import com.lovelive.sys.anno.LogAnnotation;
-import com.lovelive.user.entity.User;
-import com.lovelive.user.service.IUserService;
-import com.lovelive.user.util.UserUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.ShiroException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
+import com.lovelive.sys.entity.User;
+import com.lovelive.sys.enums.OperTypeEnums;
+import com.lovelive.sys.service.IUserService;
+import com.lovelive.sys.utils.PasswordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,7 +36,7 @@ public class RegisterController extends BaseController {
      */
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register() {
-        if (SecurityUtils.getSubject().isAuthenticated()) {
+        if (false) {
             //已经登录
             return "redirect:/login";
         } else {
@@ -52,9 +48,9 @@ public class RegisterController extends BaseController {
     /**
      * 注册请求
      */
-    @LogAnnotation(mold = OperationLog.OPER_TYPE_MULTIPLE, methods = "注册用户")
+    @LogAnnotation(mold = OperTypeEnums.MULTIPLE, description = "注册用户")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@ModelAttribute("account") String account, @ModelAttribute("password") String password, HttpServletRequest request, Model model) {
+    public String register(@ModelAttribute("account") String account, @ModelAttribute("password") String password, @ModelAttribute("name") String name, HttpServletRequest request, Model model) {
 
         //验证码校验
         if (VerifyCodeUtils.getVerify(request) == null || !VerifyCodeUtils.getVerify(request).equals(request.getParameter(CAPTCHA_NAME).toUpperCase())) {
@@ -65,10 +61,12 @@ public class RegisterController extends BaseController {
         User user = new User();
         populate(user, request);
 
+        String pattern = "^(?=.*?[a-z])(?=.*?\\d)(?=.*?[!@#$%&*()^.]).*$";  //密码校验,至少8位的数字+字母+特殊符号(!@#$%&*()^.)组成
+
         if (user.getAccount() == null || user.getAccount().equals("")) {
             model.addAttribute("errorAccount", "账号不能为空!");
             return "register/registerIndex";
-        } else if (user.getUserName() == null || user.getUserName().equals("")) {
+        } else if (user.getUsername() == null || user.getUsername().equals("")) {
             model.addAttribute("errorUserName", "用户名称不能为空!");
             return "register/registerIndex";
         } else if (user.getPassword() == null || user.getPassword().equals("")) {
@@ -80,27 +78,21 @@ public class RegisterController extends BaseController {
                 return "register/registerIndex";
             }
 
-            if (userService.existedUserName(user.getUserName())) {
+            if (userService.existedUserName(user.getUsername())) {
                 model.addAttribute("errorUserName", "用户名称已存在!");
                 return "register/registerIndex";
             }
         }
 
-        user.setPassword(UserUtils.entryptPassword(user.getPassword()));
+        user.setPassword(PasswordUtils.entryptPassword(user.getPassword()));
 
         try {
-            userService.insertUser(user);    //保存用户
+            userService.saveUser(user);    //保存用户
 
-            //登录
-            UsernamePasswordToken token = new UsernamePasswordToken(account, password, true);
-            Subject subject = SecurityUtils.getSubject();
-            subject.login(token);
+            //TODO  自动登录
 
-        } catch (ShiroException se) {
-            return "register/registerSuccess";
         } catch (Exception e) {
-            model.addAttribute("errorMsg", "注册失败!");
-            return "register/registerIndex";
+            log.error("", e);
         }
         return "register/registerSuccess";
     }
