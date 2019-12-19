@@ -1,8 +1,5 @@
 package com.lovelive.common.uitls;
 
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
-
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
@@ -20,8 +17,6 @@ import java.util.Random;
  * @Author dhe
  * @Date 2019/4/26
  */
-@Service
-@Lazy(false)
 public class VerifyCodeUtils {
 
     private static final String VERIFY_NAME = "LOGIN_VERIFY_CODE";
