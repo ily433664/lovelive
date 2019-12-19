@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IOperationLogDao extends BaseDao<OperationLog, String> {
 
+    OperationLog getOperationLogById(String id);
+
 }

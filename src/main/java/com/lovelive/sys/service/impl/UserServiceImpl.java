@@ -18,7 +18,7 @@ public class UserServiceImpl extends BaseService implements IUserService {
     }
 
     @Override
-    public User getUserById(Long id) {
+    public User getUserById(String id) {
         return userDao.getUserById(id);
     }
 
@@ -28,12 +28,12 @@ public class UserServiceImpl extends BaseService implements IUserService {
     }
 
     @Override
-    public User getUserByUserName(String userName) {
-        return userDao.getUserByUserName(userName);
+    public User getUserByUsername(String username) {
+        return userDao.getUserByUsername(username);
     }
 
     @Override
-    public int deleteUserById(Long id) {
+    public int deleteUserById(String id) {
         return userDao.deleteUserById(id);
     }
 
@@ -58,8 +58,8 @@ public class UserServiceImpl extends BaseService implements IUserService {
     }
 
     @Override
-    public boolean existedUserName(String userName) {
-        return (userDao.existedUserName(userName) != null);
+    public boolean existedUsername(String username) {
+        return (userDao.existedUsername(username) != null);
     }
 
     @Override

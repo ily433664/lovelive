@@ -10,7 +10,7 @@ public interface IChangeLinkService {
      * @param id
      * @return
      */
-    ChangeLink getChangeLink(Long id);
+    ChangeLink getChangeLink(String id);
 
     /**
      * 根据longUrl获取短链接对象
@@ -33,5 +33,5 @@ public interface IChangeLinkService {
      *
      * @param id
      */
-    int deleteChangeLink(Long id);
+    void deleteChangeLink(String id);
 }

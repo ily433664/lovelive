@@ -40,11 +40,8 @@ public class LotteryServiceImpl extends BaseService implements ILotteryService {
     @Override
     public List<Prize> prizeDraw(String lotteryId, int num) {
 
-        Optional<Lottery> optionalLottery = lotteryDao.findById(lotteryId);
-        Lottery lottery;
-        if (optionalLottery.isPresent()) {
-            lottery = optionalLottery.get();
-        } else {
+        Lottery lottery = lotteryDao.getLotteryById(lotteryId);
+        if (lottery == null) {
             throw new NoSuchElementException("not find " + Lottery.class.getName());
         }
 

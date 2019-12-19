@@ -9,13 +9,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IUserDao extends BaseDao<User, String> {
 
-    User getUserById(Long id);
+    User getUserById(String id);
 
     User getUserByAccount(String account);
 
-    User getUserByUserName(String userName);
+    User getUserByUsername(String username);
 
-    int deleteUserById(Long id);
+    int deleteUserById(String id);
 
     int deleteUserByAccount(String account);
 
@@ -24,8 +24,8 @@ public interface IUserDao extends BaseDao<User, String> {
     @Query(" select 1 from User u where u.account=:account ")
     Object existedAccount(@Param("account") String account);
 
-    @Query(" select 1 from User u where u.userName=:userName ")
-    Object existedUserName(@Param("userName") String userName);
+    @Query(" select 1 from User u where u.username=:username ")
+    Object existedUsername(@Param("username") String username);
 
     @Query(" select 1 from UserRole ur where ur.user.account=:account and ur.role.code=:roleCode ")
     Object existedAccountRole(@Param("account") String account, @Param("roleCode") String roleCode);

@@ -10,7 +10,7 @@ public interface IUserService {
      * @param id
      * @return
      */
-    User getUserById(Long id);
+    User getUserById(String id);
 
     /**
      * 根据账号获取用户
@@ -23,10 +23,10 @@ public interface IUserService {
     /**
      * 根据用户名获取用户
      *
-     * @param userName
+     * @param username
      * @return
      */
-    User getUserByUserName(String userName);
+    User getUserByUsername(String username);
 
     /**
      * 根据id删除用户
@@ -34,7 +34,7 @@ public interface IUserService {
      * @param id
      * @return
      */
-    int deleteUserById(Long id);
+    int deleteUserById(String id);
 
     /**
      * 根据账号删除用户
@@ -71,10 +71,10 @@ public interface IUserService {
     /**
      * 判断是否存在用户名
      *
-     * @param userName
+     * @param username
      * @return
      */
-    boolean existedUserName(String userName);
+    boolean existedUsername(String username);
 
     /**
      * 判断该账号是否拥有此角色

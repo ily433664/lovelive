@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ILotteryDao extends BaseDao<Lottery, String> {
 
+    Lottery getLotteryById(String id);
+
 }

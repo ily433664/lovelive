@@ -35,7 +35,7 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "getUserNameById", method = RequestMethod.GET)
-    public String getUserNameById(@RequestParam("id") Long id, HttpServletRequest request, Model model) {
+    public String getUserNameById(@RequestParam("id") String id, HttpServletRequest request, Model model) {
 
         User user = userService.getUserById(id);
         request.setAttribute("name", user.getUsername());

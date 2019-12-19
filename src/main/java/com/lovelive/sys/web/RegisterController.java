@@ -78,7 +78,7 @@ public class RegisterController extends BaseController {
                 return "register/registerIndex";
             }
 
-            if (userService.existedUserName(user.getUsername())) {
+            if (userService.existedUsername(user.getUsername())) {
                 model.addAttribute("errorUserName", "用户名称已存在!");
                 return "register/registerIndex";
             }

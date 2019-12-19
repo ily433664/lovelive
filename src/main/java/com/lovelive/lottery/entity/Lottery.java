@@ -83,7 +83,7 @@ public class Lottery extends BaseEntity {
     /**
      * 奖品概率
      */
-    @OneToMany(mappedBy = "lottery", cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "lottery", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private List<PrizeChance> prizeChances = new ArrayList<>();
 
     public Lottery() {

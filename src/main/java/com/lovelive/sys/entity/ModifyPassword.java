@@ -4,7 +4,7 @@ package com.lovelive.sys.entity;
 import com.lovelive.common.base.BaseEntity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @Description 修改密码记录
@@ -20,7 +20,7 @@ public class ModifyPassword extends BaseEntity {
     /**
      * 用户
      */
-    @NotBlank
+    @NotNull
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private User user;
 

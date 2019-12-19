@@ -3,10 +3,7 @@ package com.lovelive.sys.entity;
 import com.lovelive.common.base.BaseEntity;
 import com.lovelive.sys.enums.MessageTypeEnums;
 
-import javax.persistence.Entity;
-import javax.persistence.Index;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -26,7 +23,7 @@ import java.util.Date;
 )
 public class Message extends BaseEntity {
 
-    private static final long serialVersionUID = 1898989257895360795L;
+    private static final long serialVersionUID = 2878229841387651280L;
 
     /**
      * 消息类型
@@ -36,7 +33,7 @@ public class Message extends BaseEntity {
     /**
      * 已读消息
      */
-    private boolean read = false;
+    private boolean ready = false;
 
     /**
      * 读取时间
@@ -46,12 +43,16 @@ public class Message extends BaseEntity {
     /**
      * 发件人
      */
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "sender")
     private User sender;
 
     /**
      * 收件人
      */
     @NotNull
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "recipient")
     private User recipient;
 
     /**
@@ -83,12 +84,12 @@ public class Message extends BaseEntity {
         this.type = type;
     }
 
-    public boolean isRead() {
-        return read;
+    public boolean isReady() {
+        return ready;
     }
 
-    public void setRead(boolean read) {
-        this.read = read;
+    public void setReady(boolean ready) {
+        this.ready = ready;
     }
 
     public Date getReadTime() {

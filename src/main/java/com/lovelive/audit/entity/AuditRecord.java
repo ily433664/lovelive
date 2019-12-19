@@ -3,10 +3,7 @@ package com.lovelive.audit.entity;
 import com.lovelive.common.base.BaseEntity;
 import com.lovelive.sys.entity.User;
 
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -14,7 +11,8 @@ import javax.validation.constraints.NotNull;
  * @Author dHe
  * @Date 2019/8/9
  */
-@MappedSuperclass
+@Entity
+@Table(name = "t_audit_record ")
 public abstract class AuditRecord extends BaseEntity {
 
     private static final long serialVersionUID = 83504985148449745L;

@@ -19,7 +19,7 @@ public class ChangeLinkServiceImpl extends BaseService implements IChangeLinkSer
     @Autowired
     private IChangeLinkDao changeLinkDao;
 
-    public ChangeLink getChangeLink(Long id) {
+    public ChangeLink getChangeLink(String id) {
         ChangeLink changeLink = changeLinkDao.getChangeLinkById(id);
         if (changeLink != null) {
             changeLink.setUpdateDate(new Date());
@@ -52,7 +52,7 @@ public class ChangeLinkServiceImpl extends BaseService implements IChangeLinkSer
         return changeLink;
     }
 
-    public int deleteChangeLink(Long id) {
-        return changeLinkDao.deleteChangeLinkById(id);
+    public void deleteChangeLink(String id) {
+         changeLinkDao.deleteById(id);
     }
 }

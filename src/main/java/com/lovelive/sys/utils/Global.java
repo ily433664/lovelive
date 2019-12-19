@@ -16,11 +16,6 @@ import org.springframework.stereotype.Component;
 public class Global {
 
     /**
-     * 开发环境
-     */
-    private static boolean development;
-
-    /**
      * 验证码位数
      */
     private static int verifySize;
@@ -39,15 +34,6 @@ public class Global {
      * 文件存放路径
      */
     private static String filePath;
-
-    public static boolean isDevelopment() {
-        return development;
-    }
-
-    @Value("${development:false}")
-    public void setDevelopment(boolean development) {
-        Global.development = development;
-    }
 
     public static int getVerifySize() {
         return verifySize;

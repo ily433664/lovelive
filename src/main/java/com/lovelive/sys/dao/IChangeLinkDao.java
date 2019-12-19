@@ -7,10 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IChangeLinkDao extends BaseDao<ChangeLink, String> {
 
-    ChangeLink getChangeLinkById(Long id);
+    ChangeLink getChangeLinkById(String Id);
 
     ChangeLink getChangeLinkByLongURL(String longURL);
-
-    int deleteChangeLinkById(Long id);
 
 }
