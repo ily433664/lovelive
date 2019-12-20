@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.util.UriUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+
 /**
  * 文件工具类
  *
@@ -783,11 +785,24 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
      * @param filePath 文件的路径[/aaa/bbb/ccc/]
      */
     public static ResponseEntity<byte[]> downloadFile(String fileName, String filePath) throws IOException {
-        HttpHeaders headers = new HttpHeaders();
         File file = new File(filePath);
+        HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-        headers.setContentDispositionFormData("attachment", fileName);
+        headers.setContentDispositionFormData("attachment", UriUtils.encode(fileName, "UTF-8"));
         return new ResponseEntity<>(org.apache.commons.io.FileUtils.readFileToByteArray(file), headers, HttpStatus.CREATED);
+    }
+
+    /**
+     * 下载文件
+     *
+     * @param fileName 下载的文件名称
+     * @param body     字节流
+     */
+    public static ResponseEntity<byte[]> downloadFile(String fileName, byte[] body) throws IOException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        headers.setContentDispositionFormData("attachment", UriUtils.encode(fileName, "UTF-8"));
+        return new ResponseEntity<>(body, headers, HttpStatus.CREATED);
     }
 
     /**

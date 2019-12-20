@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
+/**
+ * token controller
+ *
+ * @author dHe
+ * @date 2019-8-9
+ */
 @Api(value = "token", description = "鉴权token接口", tags = "tokenAPI")
 @RestController("/tokens")
 public class TokenController {
