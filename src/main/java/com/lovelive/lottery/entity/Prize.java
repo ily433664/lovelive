@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description 奖励
- * @Author dHe
- * @Date 2019/5/9
+ * 奖励
+ *
+ * @author dHe
+ * @date 2019-5-9
  */
 @Entity
 @Table(name = "t_prize")

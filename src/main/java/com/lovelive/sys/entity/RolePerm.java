@@ -5,9 +5,10 @@ import com.lovelive.common.base.BaseEntity;
 import javax.persistence.*;
 
 /**
- * @Description 角色-操作权限
- * @Author dHe
- * @Date 2019/4/26
+ * 角色-操作权限
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 @Entity
 @Table(name = "t_role_perm")

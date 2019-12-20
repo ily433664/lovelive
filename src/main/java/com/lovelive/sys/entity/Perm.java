@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description 操作权限
- * @Author dHe
- * @Date 2019/4/26
+ * 操作权限
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 @Entity
 @Table(name = "t_perm")

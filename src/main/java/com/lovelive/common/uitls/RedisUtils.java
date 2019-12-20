@@ -14,9 +14,10 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @Description java类作用描述
- * @Author dcampus
- * @Date 2019/6/18
+ * redis工具类
+ *
+ * @author dHe
+ * @date 2019-6-18
  */
 @Component
 public class RedisUtils {

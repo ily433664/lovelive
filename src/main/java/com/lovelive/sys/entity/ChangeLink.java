@@ -6,7 +6,10 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 短链接 Entity
+ * 短链接
+ *
+ * @author dHe
+ * @date 2019-12-15
  */
 @Entity
 @Table

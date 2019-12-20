@@ -12,11 +12,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author dhe
- * @version V1.0
- * @ClassName: BaseRecord
- * @Description: Record支持类
- * @date 2018年1月18日 下午5:59:00
+ * Record支持类
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 @MappedSuperclass
 public abstract class BaseRecord implements Serializable {

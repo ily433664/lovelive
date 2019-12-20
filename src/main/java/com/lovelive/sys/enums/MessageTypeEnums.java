@@ -3,6 +3,12 @@ package com.lovelive.sys.enums;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * 消息类型
+ *
+ * @author dHe
+ * @date 2019-4-26
+ */
 public enum MessageTypeEnums {
 
     //states:1为使用中,0为停止使用

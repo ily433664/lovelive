@@ -11,6 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * 验证码 controller
+ *
+ * @author dhe
+ * @date 2019-4-26
+ */
 @Controller
 public class VerifyController extends BaseController {
 

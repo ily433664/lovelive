@@ -6,9 +6,10 @@ import com.lovelive.common.base.BaseEntity;
 import javax.persistence.*;
 
 /**
- * @Description 用户-角色
- * @Author dHe
- * @Date 2019/4/26
+ * 用户-角色
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 @Entity
 @Table(name = "t_user_role")

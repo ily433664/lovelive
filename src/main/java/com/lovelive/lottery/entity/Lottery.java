@@ -7,9 +7,10 @@ import javax.persistence.*;
 import java.util.*;
 
 /**
- * @Description 抽奖池
- * @Author dHe
- * @Date 2019/5/7
+ * 抽奖池
+ *
+ * @author dHe
+ * @date 2019-5-7
  */
 @Entity
 @Table(name = "t_lottery")

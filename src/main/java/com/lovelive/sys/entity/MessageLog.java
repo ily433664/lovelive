@@ -8,13 +8,14 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
- * @Description 消息通知
- * @Author dHe
- * @Date 2019/4/26
+ * 消息通知日志
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 @Entity
 @Table(
-        name = "t_message",
+        name = "t_message_log",
         indexes = {
                 @Index(name = "idx_message_msgType", columnList = "msgType"),
                 @Index(name = "idx_message_sendSuccess", columnList = "sendSuccess")

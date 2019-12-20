@@ -2,6 +2,12 @@ package com.lovelive.sys.service;
 
 import java.util.List;
 
+/**
+ * redis service
+ *
+ * @author dhe
+ * @date 2019-12-18
+ */
 public interface IRedisService {
 
     void setStringValue(String key, String value);

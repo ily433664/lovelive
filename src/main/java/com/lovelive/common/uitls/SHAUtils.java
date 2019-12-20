@@ -5,8 +5,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 
-
-public class SHA256 {
+/**
+ * sha工具类
+ *
+ * @author dHe
+ * @date 2019-6-18
+ */
+public class SHAUtils {
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
 

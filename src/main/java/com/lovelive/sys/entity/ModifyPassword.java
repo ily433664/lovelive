@@ -7,9 +7,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * @Description 修改密码记录
- * @Author dHe
- * @Date 2019/5/5
+ * 修改密码记录
+ *
+ * @author dHe
+ * @date 2019-5-5
  */
 @Entity
 @Table(name = "t_modify_password")

@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 注册 controller
+ *
+ * @author dHe
+ * @date 2019-4-26
+ */
 @Controller
 public class RegisterController extends BaseController {
 

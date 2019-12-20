@@ -10,13 +10,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-
+/**
+ * 操作日志 controller
+ *
+ * @author dhe
+ * @date 2018-1-18
+ */
 @Controller
 @RequestMapping(value = "/operationLog")
 public class OperationLogController extends BaseController {
 
     private IOperationLogService operationLogService;
-
 
     @Autowired
     public OperationLogController(IOperationLogService operationLogService) {

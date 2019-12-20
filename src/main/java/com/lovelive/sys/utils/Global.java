@@ -6,10 +6,11 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**
- * @Description 全局配置类
+ * 全局配置类
  * static变量需要用set注入，并且set方法不能是static
- * @Author dHe
- * @Date 2019/5/5
+ *
+ * @author dHe
+ * @date 2019-5-5
  */
 @Component
 @PropertySource("customConfig.properties")

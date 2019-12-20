@@ -6,11 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * 短链接 Entity
+ * 邮箱配置
+ *
+ * @author dHe
+ * @date 2019-12-15
  */
 @Entity
-@Table
+@Table(name = "t_mail_config")
 public class MailConfig extends BaseEntity {
+
+    private static final long serialVersionUID = -922460274751667271L;
 
     /**
      * 服务器

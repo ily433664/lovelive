@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description 角色
- * @Author dHe
- * @Date 2019/4/26
+ * 角色
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 @Entity
 @Table(name = "t_role")

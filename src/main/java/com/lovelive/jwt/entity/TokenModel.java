@@ -6,9 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * @Description Token的Model类
- * @Author dHe
- * @Date 2019/12/19
+ * Token的Model类
+ *
+ * @author dHe
+ * @date 2019-12-19
  */
 @Entity
 @Table(name = "t_token_model")

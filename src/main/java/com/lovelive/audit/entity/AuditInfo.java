@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description 审核信息
- * @Author dHe
- * @Date 2019/8/9
+ * 审核信息
+ *
+ * @author dHe
+ * @date 2019-8-9
  */
 @Entity
 @Table(name = "t_audit_info")

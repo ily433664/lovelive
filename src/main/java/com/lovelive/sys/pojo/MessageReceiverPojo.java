@@ -1,6 +1,11 @@
 package com.lovelive.sys.pojo;
 
-
+/**
+ * 消息发送内容
+ *
+ * @author dHe
+ * @date 2019-4-26
+ */
 public class MessageReceiverPojo {
 
     //接收人信息----------------------------------------

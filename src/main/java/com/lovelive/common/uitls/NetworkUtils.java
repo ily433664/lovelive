@@ -13,7 +13,10 @@ import java.net.UnknownHostException;
 import java.util.Map;
 
 /**
- * @author dhe
+ * 网络工具类
+ *
+ * @author dHe
+ * @date 2019-12-19
  */
 @Component
 public class NetworkUtils {

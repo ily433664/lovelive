@@ -2,6 +2,12 @@ package com.lovelive.sys.service;
 
 import com.lovelive.sys.entity.ChangeLink;
 
+/**
+ * 短链接 service
+ *
+ * @author dHe
+ * @date 2019-12-15
+ */
 public interface IChangeLinkService {
 
     /**

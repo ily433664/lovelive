@@ -9,9 +9,10 @@ import java.security.MessageDigest;
 import java.security.SecureRandom;
 
 /**
- * @Description 支持SHA-1/MD5消息摘要的工具类.返回ByteSource，可进一步被编码为Hex, Base64或UrlSafeBase64
- * @Author dHe
- * @Date 2019/4/26
+ * 支持SHA-1/MD5消息摘要的工具类.返回ByteSource，可进一步被编码为Hex, Base64或UrlSafeBase64
+ *
+ * @author dHe
+ * @date 2019-12-15
  */
 public class Digests {
 

@@ -15,9 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description 控制器支持类
- * @Author dhe
- * @Date 2019/4/26
+ * controller支持类
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 public abstract class BaseController {
 

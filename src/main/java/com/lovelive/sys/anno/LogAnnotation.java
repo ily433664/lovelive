@@ -8,18 +8,22 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author dhe
- * @version V1.0
- * @ClassName: LogAnnotation
- * @Description: 日志注解
- * @date 2018年1月18日 下午6:01:09
+ * 日志注解
+ *
+ * @author dHe
+ * @date 2018-1-18
  */
-
 @Target({ElementType.PARAMETER, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LogAnnotation {
 
-    OperTypeEnums mold() default OperTypeEnums.MULTIPLE;//操作类型
+    /**
+     * 操作类型
+     */
+    OperTypeEnums mold() default OperTypeEnums.MULTIPLE;
 
-    String description() default "";//方法说明
+    /**
+     * 方法说明
+     */
+    String description() default "";
 }

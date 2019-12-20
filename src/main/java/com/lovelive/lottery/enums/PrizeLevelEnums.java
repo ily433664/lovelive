@@ -4,17 +4,18 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @Description 奖励等级
- * @Author dHe
- * @Date 2019/5/9
+ * 奖励等级
+ *
+ * @author dHe
+ * @date 2019-5-9
  */
 public enum PrizeLevelEnums {
 
     //states:1为使用中,0为停止使用
     /**
-     * 正常
+     * 普通
      */
-    N(0, "normal", "正常", 1),
+    N(0, "normal", "普通", 1),
     /**
      * 稀有
      */

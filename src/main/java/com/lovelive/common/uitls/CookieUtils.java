@@ -1,11 +1,4 @@
-/**
- * Copyright &copy; 2012-2013  All rights reserved.
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
 package com.lovelive.common.uitls;
-
-import com.lovelive.common.uitls.StringUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +10,8 @@ import java.net.URLEncoder;
 /**
  * Cookie工具类
  *
- * @author ThinkGem
- * @version 2013-01-15
+ * @author dHe
+ * @date 2019-12-17
  */
 public class CookieUtils {
 

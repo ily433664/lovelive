@@ -6,9 +6,10 @@ import com.lovelive.sys.entity.Role;
 import javax.persistence.*;
 
 /**
- * @Description 审核-角色
- * @Author dHe
- * @Date 2019/8/9
+ * 审核-角色
+ *
+ * @author dHe
+ * @date 2019-8-9
  */
 @Entity
 @Table(name = "t_audit_role")

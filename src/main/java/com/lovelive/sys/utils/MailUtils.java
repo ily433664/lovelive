@@ -16,6 +16,9 @@ import java.util.concurrent.Executors;
 
 /**
  * 邮件util
+ *
+ * @author dHe
+ * @date 2019-08-23
  */
 public class MailUtils {
 

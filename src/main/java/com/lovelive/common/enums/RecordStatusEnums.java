@@ -4,7 +4,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * 状态
+ * Record状态
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 public enum RecordStatusEnums {
 

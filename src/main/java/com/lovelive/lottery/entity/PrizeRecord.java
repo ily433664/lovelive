@@ -6,9 +6,10 @@ import com.lovelive.sys.entity.User;
 import javax.persistence.*;
 
 /**
- * @Description 奖品记录
- * @Author dHe
- * @Date 2019/5/9
+ * 奖品记录
+ *
+ * @author dHe
+ * @date 2019-5-9
  */
 @Entity
 @Table(name = "t_prize_record")

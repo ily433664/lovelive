@@ -1,7 +1,10 @@
 package com.lovelive.common.uitls;
 
 /**
- * SQL工具类
+ * sql工具类
+ *
+ * @author dHe
+ * @date 2019-6-18
  */
 public class SQLHelper {
 

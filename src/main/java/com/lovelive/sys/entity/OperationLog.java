@@ -5,11 +5,10 @@ import com.lovelive.common.base.BaseEntity;
 import javax.persistence.*;
 
 /**
+ * 操作日志
+ *
  * @author dhe
- * @version V1.0
- * @ClassName: OperationLog
- * @Description: 操作日志
- * @date 2018年1月18日 下午5:57:00
+ * @date 2018-1-18
  */
 @Entity
 @Table(name = "t_operation_log")

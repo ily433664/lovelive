@@ -13,9 +13,10 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * @Description 验证码工具类
- * @Author dhe
- * @Date 2019/4/26
+ * 验证码工具类
+ *
+ * @author dhe
+ * @date 2019-4-26
  */
 public class VerifyCodeUtils {
 

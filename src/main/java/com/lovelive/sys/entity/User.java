@@ -9,9 +9,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @Description 用户
- * @Author dHe
- * @Date 2019/4/26
+ * 用户
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 @Entity
 @Table(

@@ -4,9 +4,10 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @Description Alias Method 概率算法
- * @Author dHe
- * @Date 2019/5/10
+ * Alias Method 概率算法
+ *
+ * @author dHe
+ * @date 2019-5-10
  */
 public final class AliasMethod {
     /* The random number generator used to sample from the distribution. */

@@ -4,6 +4,12 @@ import com.lovelive.lottery.entity.Prize;
 
 import java.util.List;
 
+/**
+ * lottery service
+ *
+ * @author dHe
+ * @date 2019-8-9
+ */
 public interface ILotteryService {
 
     /**

@@ -8,9 +8,10 @@ import javax.persistence.*;
 import java.io.File;
 
 /**
- * @Description 文件
- * @Author dHe
- * @Date 2019/5/5
+ * 文件
+ *
+ * @author dHe
+ * @date 2019-5-5
  */
 @Entity
 @Table(name = "t_annex_file")

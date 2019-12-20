@@ -7,9 +7,10 @@ import org.hibernate.id.UUIDHexGenerator;
 import java.io.Serializable;
 
 /**
- * @Description 自定义主键策略
- * @Author dHe
- * @Date 2019/4/26
+ * 自定义主键策略
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 public class CustomUUIDGenerator extends UUIDHexGenerator {
 

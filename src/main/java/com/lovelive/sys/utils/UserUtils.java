@@ -8,13 +8,11 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
+ * 用户工具类
+ *
  * @author dhe
- * @version V1.0
- * @ClassName: UserUtils
- * @Description: 用户工具类
- * @date 2018年1月18日 下午6:11:28
+ * @date 2018-1-18
  */
-
 @Component
 public class UserUtils {
 

@@ -24,13 +24,11 @@ import java.lang.reflect.Method;
 import java.util.Calendar;
 
 /**
- * @author dhe
- * @version V1.0
- * @ClassName: OperationLogAspect
- * @Description: AOP 日志记录
- * @date 2018年1月18日 下午5:57:20
+ * AOP 日志记录
+ *
+ * @author dHe
+ * @date 2018-01-18
  */
-
 @Aspect
 @Component
 public class OperationLogAspect {

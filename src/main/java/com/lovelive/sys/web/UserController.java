@@ -19,7 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-
+/**
+ * 用户 controller
+ *
+ * @author dHe
+ * @date 2019-4-26
+ */
 @Controller
 @RequestMapping(value = "/user")
 public class UserController extends BaseController {

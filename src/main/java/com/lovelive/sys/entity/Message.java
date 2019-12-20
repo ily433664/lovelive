@@ -9,9 +9,10 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
- * @Description 消息通知
- * @Author dHe
- * @Date 2019/4/26
+ * 消息
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 @Entity
 @Table(

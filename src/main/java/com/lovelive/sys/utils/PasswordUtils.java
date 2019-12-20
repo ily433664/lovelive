@@ -5,9 +5,10 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
- * @Description 密码工具类
- * @Author dHe
- * @Date 2019/4/26
+ * 密码工具类
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 @Component
 @Lazy(false)

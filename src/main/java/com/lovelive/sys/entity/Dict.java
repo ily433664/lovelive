@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description 字典
- * @Author dHe
- * @Date 2019/4/29
+ * 字典
+ *
+ * @author dHe
+ * @date 2019-4-29
  */
 @Entity
 @Table(name = "t_dict")

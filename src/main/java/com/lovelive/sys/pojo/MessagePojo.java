@@ -1,6 +1,5 @@
 package com.lovelive.sys.pojo;
 
-
 import java.io.File;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -8,6 +7,9 @@ import java.util.Map;
 
 /**
  * 消息内容
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 public class MessagePojo {
 

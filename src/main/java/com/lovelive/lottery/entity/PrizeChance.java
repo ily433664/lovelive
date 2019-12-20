@@ -5,9 +5,10 @@ import com.lovelive.common.base.BaseEntity;
 import javax.persistence.*;
 
 /**
- * @Description 奖品概率
- * @Author dHe
- * @Date 2019/5/9
+ * 奖品概率
+ *
+ * @author dHe
+ * @date 2019-5-9
  */
 @Entity
 @Table(name = "t_prize_chance")

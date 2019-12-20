@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description 审核动作
- * @Author dHe
- * @Date 2019/8/9
+ * 审核动作
+ *
+ * @author dHe
+ * @date 2019-8-9
  */
 @Entity
 @Table(name = "t_audit_action")

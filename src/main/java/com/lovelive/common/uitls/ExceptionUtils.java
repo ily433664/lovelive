@@ -4,9 +4,10 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
- * @Description 关于异常的工具类
- * @Author dhe
- * @Date 2019/4/26
+ * 关于异常的工具类
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 public class ExceptionUtils {
 

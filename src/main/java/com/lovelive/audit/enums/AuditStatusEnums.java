@@ -3,6 +3,12 @@ package com.lovelive.audit.enums;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * 审核状态
+ *
+ * @author dHe
+ * @date 2019-4-26
+ */
 public enum AuditStatusEnums {
 
     //states:1为使用中,0为停止使用

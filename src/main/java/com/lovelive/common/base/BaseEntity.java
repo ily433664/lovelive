@@ -12,9 +12,10 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * @Description Entity支持类
- * @Author dhe
- * @Date 2019/4/26
+ * Entity支持类
+ *
+ * @author dHe
+ * @date 2019-4-26
  */
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {

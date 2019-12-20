@@ -2,6 +2,12 @@ package com.lovelive.sys.service;
 
 import com.lovelive.sys.entity.User;
 
+/**
+ * 用户 service
+ *
+ * @author dHe
+ * @date 2019-4-26
+ */
 public interface IUserService {
 
     /**
