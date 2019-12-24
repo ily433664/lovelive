@@ -1,4 +1,4 @@
-package com.lovelive.jwt.aop;
+package com.lovelive.jwt.Interceptor;
 
 import com.lovelive.jwt.config.JwtConfig;
 import io.jsonwebtoken.Claims;

@@ -2,7 +2,7 @@ package com.lovelive.sys.web;
 
 import com.lovelive.common.base.BaseController;
 import com.lovelive.sys.anno.LogAnnotation;
-import com.lovelive.sys.entity.RolePerm;
+import com.lovelive.sys.entity.RolePermission;
 import com.lovelive.sys.entity.User;
 import com.lovelive.sys.entity.UserRole;
 import com.lovelive.sys.enums.OperTypeEnums;
@@ -74,9 +74,9 @@ public class UserController extends BaseController {
         for (UserRole userRole : userRoles) {
             roles.append(userRole.getRole().getName()).append(", ");
 
-            List<RolePerm> rolePerms = userRole.getRole().getRolePerms();
-            for (RolePerm rolePerm : rolePerms) {
-                perms.append(rolePerm.getPerm().getId()).append(", ");
+            List<RolePermission> rolePermissions = userRole.getRole().getRolePermissions();
+            for (RolePermission rolePermission : rolePermissions) {
+                perms.append(rolePermission.getPermission().getId()).append(", ");
             }
         }
         if (roles.length() > 0) {

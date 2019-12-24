@@ -24,7 +24,7 @@ import java.util.List;
 )
 public class User extends BaseEntity {
 
-    private static final long serialVersionUID = 5697277284440469180L;
+    private static final long serialVersionUID = 4570703336086199675L;
 
     /**
      * 账号

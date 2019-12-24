@@ -3,6 +3,7 @@ package com.lovelive.sys.entity;
 import com.lovelive.common.base.BaseEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,17 +17,22 @@ import java.util.List;
 @Table(name = "t_role")
 public class Role extends BaseEntity {
 
-    private static final long serialVersionUID = 8022546963812075636L;
+    private static final long serialVersionUID = 3547529138085233166L;
 
-    /**
-     * 名称
-     */
-    private String name;
+    @NotBlank
+    private String roleType;
 
     /**
      * 代码
      */
+    @NotBlank
     private String code;
+
+    /**
+     * 名称
+     */
+    @NotBlank
+    private String name;
 
     /**
      * 拥有此角色的用户
@@ -38,7 +44,7 @@ public class Role extends BaseEntity {
      * 此角色拥有的操作
      */
     @OneToMany(mappedBy = "role", cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    private List<RolePerm> rolePerms = new ArrayList<>();
+    private List<RolePermission> rolePermissions = new ArrayList<>();
 
     public Role() {
         super();
@@ -48,12 +54,12 @@ public class Role extends BaseEntity {
         super(id);
     }
 
-    public String getName() {
-        return name;
+    public String getRoleType() {
+        return roleType;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoleType(String roleType) {
+        this.roleType = roleType;
     }
 
     public String getCode() {
@@ -64,6 +70,14 @@ public class Role extends BaseEntity {
         this.code = code;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public List<UserRole> getUserRoles() {
         return userRoles;
     }
@@ -72,11 +86,11 @@ public class Role extends BaseEntity {
         this.userRoles = userRoles;
     }
 
-    public List<RolePerm> getRolePerms() {
-        return rolePerms;
+    public List<RolePermission> getRolePermissions() {
+        return rolePermissions;
     }
 
-    public void setRolePerms(List<RolePerm> rolePerms) {
-        this.rolePerms = rolePerms;
+    public void setRolePermissions(List<RolePermission> rolePermissions) {
+        this.rolePermissions = rolePermissions;
     }
 }

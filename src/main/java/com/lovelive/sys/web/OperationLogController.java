@@ -33,7 +33,7 @@ public class OperationLogController extends BaseController {
         try {
             OperationLog operationLog = operationLogService.getOperationLog(id);
             if (operationLog != null) {
-                return new ResponseEntity(operationLog, HttpStatus.OK);
+                return new ResponseEntity<>(operationLog, HttpStatus.OK);
             } else {
                 return new ResponseEntity(HttpStatus.NOT_FOUND);
             }
@@ -49,7 +49,7 @@ public class OperationLogController extends BaseController {
             /*operationLog.setOperAccount("aaa");
             operationLog.setOperIP("127.0.0.1");*/
             Page<OperationLog> page = operationLogService.find(operationLog);
-            return new ResponseEntity(page.getContent(), HttpStatus.OK);
+            return new ResponseEntity<>(page.getContent(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }

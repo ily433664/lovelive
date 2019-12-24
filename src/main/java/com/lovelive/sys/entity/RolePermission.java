@@ -11,10 +11,10 @@ import javax.persistence.*;
  * @date 2019-4-26
  */
 @Entity
-@Table(name = "t_role_perm")
-public class RolePerm extends BaseEntity {
+@Table(name = "t_role_permission")
+public class RolePermission extends BaseEntity {
 
-    private static final long serialVersionUID = 4436566964126959541L;
+    private static final long serialVersionUID = -720192517064543159L;
 
     /**
      * 角色
@@ -26,20 +26,20 @@ public class RolePerm extends BaseEntity {
      * 操作
      */
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    private Perm perm;
+    private Permission permission;
 
-    public RolePerm() {
+    public RolePermission() {
         super();
     }
 
-    public RolePerm(String id) {
+    public RolePermission(String id) {
         super(id);
     }
 
-    public RolePerm(Role role, Perm perm) {
+    public RolePermission(Role role, Permission permission) {
         super();
         this.role = role;
-        this.perm = perm;
+        this.permission = permission;
     }
 
     public Role getRole() {
@@ -50,12 +50,12 @@ public class RolePerm extends BaseEntity {
         this.role = role;
     }
 
-    public Perm getPerm() {
-        return perm;
+    public Permission getPermission() {
+        return permission;
     }
 
-    public void setPerm(Perm perm) {
-        this.perm = perm;
+    public void setPermission(Permission permission) {
+        this.permission = permission;
     }
 
 }
