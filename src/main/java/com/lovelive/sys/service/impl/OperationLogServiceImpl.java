@@ -43,14 +43,6 @@ public class OperationLogServiceImpl extends BaseService implements IOperationLo
         Specification<OperationLog> specification = new Specification<OperationLog>() {
             @Override
             public Predicate toPredicate(Root<OperationLog> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-
-                /*ExampleMatcher matcher = ExampleMatcher.matching()
-                        .withMatcher("operAccount", ExampleMatcher.GenericPropertyMatchers.contains())//全部模糊查询，即%{value}%
-                        .withMatcher("operName", ExampleMatcher.GenericPropertyMatchers.contains())//模糊查询匹配开头，即{value}%
-                        .withMatcher("operURI", ExampleMatcher.GenericPropertyMatchers.endsWith())//模糊查询匹配结尾，即%{value}
-                        .withIgnorePaths("id");//忽略字段，即不管{value}是什么值都不加入查询条件
-                Example<OperationLog> example = Example.of(operationLog, matcher);*/
-
                 List<Predicate> predicateList = new ArrayList<>();
 
                 if (StringUtils.isNotEmpty(operationLog.getOperAccount())) {
@@ -70,7 +62,7 @@ public class OperationLogServiceImpl extends BaseService implements IOperationLo
             }
         };
 
-        Pageable pageable = PageRequest.of(0, 10, Sort.by("id").descending());
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("createTime").descending().and(Sort.by("id").descending()));
 
         return operationLogDao.findAll(specification, pageable);
     }

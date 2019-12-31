@@ -22,25 +22,65 @@ import java.util.Set;
 @Component
 public class RedisUtils {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RedisUtils.class);
+    private static final Logger log = LoggerFactory.getLogger(RedisUtils.class);
+
+    private static final int CACHE_TIME = 3600;
 
     @Autowired(required = false)
     private JedisPool jedisPool;
 
+    public Set<String> keys(String pattern) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            return jedis.keys(pattern);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public Set<byte[]> keys(byte[] pattern) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            return jedis.keys(pattern);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public void expire(String key, int seconds) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            jedis.expire(key, seconds);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+    public void expire(byte[] key, int seconds) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            jedis.expire(key, seconds);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
     public String set(String key, HashMap<String, String> map) {
         try (Jedis jedis = jedisPool.getResource()) {
-            return jedisPool.getResource().hmset(key, map);
+            String s = jedis.hmset(key, map);
+            expire(key, CACHE_TIME);
+            return s;
         } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }
 
     public String set(byte[] key, HashMap<byte[], byte[]> map) {
         try (Jedis jedis = jedisPool.getResource()) {
-            return jedis.hmset(key, map);
+            String s = jedis.hmset(key, map);
+            expire(key, CACHE_TIME);
+            return s;
         } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -48,13 +88,13 @@ public class RedisUtils {
     public String set(String key, List<String> list) {
         try (Jedis jedis = jedisPool.getResource()) {
             Long aLong = -1l;
-            for (String value : list
-                    ) {
+            for (String value : list) {
                 aLong = jedis.lpush(key, value);
+                expire(key, CACHE_TIME);
             }
             return aLong <= 0 ? "error" : "OK";
         } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -62,31 +102,35 @@ public class RedisUtils {
     public String set(byte[] key, List<byte[]> list) {
         try (Jedis jedis = jedisPool.getResource()) {
             Long aLong = -1l;
-            for (byte[] value : list
-                    ) {
+            for (byte[] value : list) {
                 aLong = jedis.lpush(key, value);
+                expire(key, CACHE_TIME);
             }
             return aLong <= 0 ? "error" : "OK";
         } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }
 
     public String set(String key, String value) {
         try (Jedis jedis = jedisPool.getResource()) {
-            return jedis.set(key, value);
+            String s = jedis.set(key, value);
+            expire(key, CACHE_TIME);
+            return s;
         } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }
 
     public String set(byte[] key, byte[] value) {
         try (Jedis jedis = jedisPool.getResource()) {
-            return jedis.set(key, value);
+            String s = jedis.set(key, value);
+            expire(key, CACHE_TIME);
+            return s;
         } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -94,13 +138,13 @@ public class RedisUtils {
     public String set(String key, Set<String> set) {
         try (Jedis jedis = jedisPool.getResource()) {
             Long aLong = -1l;
-            for (String value : set
-                    ) {
+            for (String value : set) {
                 aLong = jedis.sadd(key, value);
+                expire(key, CACHE_TIME);
             }
             return aLong <= 0 ? "error" : "OK";
         } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -108,13 +152,13 @@ public class RedisUtils {
     public String set(byte[] key, Set<byte[]> set) {
         try (Jedis jedis = jedisPool.getResource()) {
             Long aLong = -1l;
-            for (byte[] value : set
-                    ) {
+            for (byte[] value : set) {
                 aLong = jedis.sadd(key, value);
+                expire(key, CACHE_TIME);
             }
             return aLong <= 0 ? "error" : "OK";
         } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -122,9 +166,23 @@ public class RedisUtils {
     //redis写入对象，用序列化对象的方式
     public String set(String key, Object Obj) {
         try (Jedis jedis = jedisPool.getResource()) {
-            return jedis.set(key.getBytes(), SerializationUtils.serialize(Obj));
+            String s = jedis.set(key.getBytes(), SerializationUtils.serialize(Obj));
+            expire(key, CACHE_TIME);
+            return s;
         } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    //redis写入对象，用序列化对象的方式
+    public String set(String key, Object Obj, int seconds) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            String s = jedis.set(key.getBytes(), SerializationUtils.serialize(Obj));
+            expire(key, seconds);
+            return s;
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -150,7 +208,7 @@ public class RedisUtils {
             }
             return object;
         } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -159,7 +217,34 @@ public class RedisUtils {
         try (Jedis jedis = jedisPool.getResource()) {
             return jedis.get(key);
         } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public Long expire(String key) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            return jedis.expire(key, CACHE_TIME);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public Long expire(byte[] key) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            return jedis.expire(key, CACHE_TIME);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public Long delete(byte[] key) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            return jedis.del(key);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -168,7 +253,16 @@ public class RedisUtils {
         try (Jedis jedis = jedisPool.getResource()) {
             return jedis.del(key);
         } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public String flushDB() {
+        try (Jedis jedis = jedisPool.getResource()) {
+            return jedis.flushDB();
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -192,11 +286,11 @@ public class RedisUtils {
             } else {
                 set(key, value);
             }
+            expire(key, CACHE_TIME);
             return "OK";
         } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }
-
 }

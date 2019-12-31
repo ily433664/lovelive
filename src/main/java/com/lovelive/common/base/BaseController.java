@@ -28,7 +28,7 @@ public abstract class BaseController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     /**
-     * 添加Model消息
+     * 添加 Model 消息
      *
      * @param messages
      */
@@ -41,7 +41,7 @@ public abstract class BaseController {
     }
 
     /**
-     * 添加Flash消息
+     * 添加 Flash 消息
      *
      * @param messages
      */
@@ -67,11 +67,11 @@ public abstract class BaseController {
 
     /**
      * 初始化数据绑定
-     * 1. 将所有传递进来的String进行HTML编码，防止XSS攻击
+     * 1. 将所有传递进来的 String 进行 HTML 编码，防止 XSS 攻击
      */
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
-        // String类型转换，将所有传递进来的String进行HTML编码，防止XSS攻击
+        // String 类型转换，将所有传递进来的 String 进行 HTML 编码，防止 XSS 攻击
         binder.registerCustomEditor(String.class, new PropertyEditorSupport() {
             @Override
             public String getAsText() {

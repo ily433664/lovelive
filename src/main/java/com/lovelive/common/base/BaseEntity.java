@@ -90,7 +90,7 @@ public abstract class BaseEntity implements Serializable {
     /**
      * 序号
      */
-    protected Integer sequence;
+    protected Double sequence;
 
     public BaseEntity() {
         super();
@@ -197,11 +197,11 @@ public abstract class BaseEntity implements Serializable {
         this.year = year;
     }
 
-    public Integer getSequence() {
+    public Double getSequence() {
         return sequence;
     }
 
-    public void setSequence(Integer sequence) {
+    public void setSequence(Double sequence) {
         this.sequence = sequence;
     }
 

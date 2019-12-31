@@ -24,7 +24,14 @@ import java.util.List;
 )
 public class User extends BaseEntity {
 
-    private static final long serialVersionUID = 4570703336086199675L;
+    private static final long serialVersionUID = -1412831677803038884L;
+
+    /**
+     * 用户类型
+     * UserTypeEnums
+     */
+    @NotBlank
+    private String userType;
 
     /**
      * 账号
@@ -98,7 +105,7 @@ public class User extends BaseEntity {
      * 照片
      */
     @OneToOne(fetch = FetchType.EAGER)
-    private AnnexFile photo;
+    private FileAttachment photo;
 
     /**
      * 用户的角色
@@ -106,18 +113,20 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private List<UserRole> userRoles = new ArrayList<>();
 
-    /**
-     * 修改密码记录
-     */
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<ModifyPassword> modifyPasswords = new ArrayList<>();
-
     public User() {
         super();
     }
 
     public User(String id) {
         this.id = id;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public String getAccount() {
@@ -224,11 +233,11 @@ public class User extends BaseEntity {
         this.weChat = weChat;
     }
 
-    public AnnexFile getPhoto() {
+    public FileAttachment getPhoto() {
         return photo;
     }
 
-    public void setPhoto(AnnexFile photo) {
+    public void setPhoto(FileAttachment photo) {
         this.photo = photo;
     }
 
@@ -240,11 +249,4 @@ public class User extends BaseEntity {
         this.userRoles = userRoles;
     }
 
-    public List<ModifyPassword> getModifyPasswords() {
-        return modifyPasswords;
-    }
-
-    public void setModifyPasswords(List<ModifyPassword> modifyPasswords) {
-        this.modifyPasswords = modifyPasswords;
-    }
 }

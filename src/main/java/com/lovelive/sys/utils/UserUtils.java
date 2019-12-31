@@ -1,7 +1,10 @@
 package com.lovelive.sys.utils;
 
+import com.lovelive.common.uitls.StringUtils;
+import com.lovelive.jwt.utils.JwtUtils;
 import com.lovelive.sys.entity.User;
 import com.lovelive.sys.service.IUserService;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +13,7 @@ import java.util.Date;
 /**
  * 用户工具类
  *
- * @author dhe
+ * @author dHe
  * @date 2018-1-18
  */
 @Component
@@ -24,25 +27,45 @@ public class UserUtils {
     }
 
     public static User getUser() {
-        //TODO
-        User user = userService.getUserRoleByAccount("lovelive");
-        return user;
+        Claims claims = JwtUtils.checkToken();
+        if (claims != null) {
+            String userId = claims.getId();
+            if (StringUtils.isNotEmpty(userId)) {
+                //TODO
+                return userService.getUserByAccount("lovelive");
+                //return userService.getUserById(userId);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取登录标识
+     *
+     * @return
+     */
+    public static String getIdentify() {
+        return JwtUtils.getToken();
     }
 
     public static String getUserId() {
-        return getUser().getId();
+        User user = UserUtils.getUser();
+        return user != null ? user.getId() : null;
     }
 
     public static String getAccount() {
-        return getUser().getAccount();
+        User user = UserUtils.getUser();
+        return user != null ? user.getAccount() : null;
     }
 
     public static String getUsername() {
-        return getUser().getUsername();
+        User user = UserUtils.getUser();
+        return user != null ? user.getUsername() : null;
     }
 
     public static Date getLastLoginTime() {
-        return getUser().getLastLoginTime();
+        User user = UserUtils.getUser();
+        return user != null ? user.getLastLoginTime() : null;
     }
 
 }

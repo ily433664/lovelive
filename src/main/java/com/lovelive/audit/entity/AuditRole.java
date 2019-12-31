@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Table(name = "t_audit_role")
 public class AuditRole extends BaseEntity {
 
-    private static final long serialVersionUID = -2045416406076751089L;
+    private static final long serialVersionUID = 6428578342448380510L;
 
     /**
      * 用户

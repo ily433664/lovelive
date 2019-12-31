@@ -5,19 +5,23 @@ import com.lovelive.sys.anno.LogAnnotation;
 import com.lovelive.sys.entity.RolePermission;
 import com.lovelive.sys.entity.User;
 import com.lovelive.sys.entity.UserRole;
-import com.lovelive.sys.enums.OperTypeEnums;
+import com.lovelive.sys.enums.OperationTypeEnums;
 import com.lovelive.sys.service.IChangeLinkService;
 import com.lovelive.sys.service.IUserService;
 import com.lovelive.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户 controller
@@ -25,7 +29,7 @@ import java.util.List;
  * @author dHe
  * @date 2019-4-26
  */
-@Controller
+@RestController
 @RequestMapping(value = "/user")
 public class UserController extends BaseController {
 
@@ -40,30 +44,20 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "getUserNameById", method = RequestMethod.GET)
-    public String getUserNameById(@RequestParam("id") String id, HttpServletRequest request, Model model) {
-
+    public ResponseEntity<?> getUserNameById(@RequestParam("id") String id, HttpServletRequest request, Model model) {
         User user = userService.getUserById(id);
-        request.setAttribute("name", user.getUsername());
-        model.addAttribute("name", user.getUsername());
-
-        changeLinkService.getChangeLinkByLongURL("aaa");
-
-        return "test/showUser";
+        return new ResponseEntity<>(user.getUsername(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "getUserNameByAccount", method = RequestMethod.GET)
-    public String getUserNameByAccount(@RequestParam("account") String account, HttpServletRequest request, Model model) {
-
+    public ResponseEntity<?> getUserNameByAccount(@RequestParam("account") String account, HttpServletRequest request, Model model) {
         User user = userService.getUserByAccount(account);
-        request.setAttribute("name", user.getUsername());
-        model.addAttribute("name", user.getUsername());
-
-        return "test/showUser";
+        return new ResponseEntity<>(user.getUsername(), HttpStatus.OK);
     }
 
-    @LogAnnotation(mold = OperTypeEnums.QUERY, description = "显示当前用户信息")
+    @LogAnnotation(mold = OperationTypeEnums.QUERY, description = "显示当前用户信息")
     @RequestMapping(value = "getUserRoleByAccount", method = RequestMethod.GET)
-    public String getUserRoleByAccount(Model model) {
+    public ResponseEntity<?> getUserRoleByAccount(Model model) {
 
         User user = UserUtils.getUser();
 
@@ -86,11 +80,12 @@ public class UserController extends BaseController {
             perms = perms.deleteCharAt(roles.length() - 2);
         }
 
-        model.addAttribute("name", user.getUsername());
-        model.addAttribute("role", roles.toString());
-        model.addAttribute("perm", perms.toString());
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("name", user.getUsername());
+        map.put("role", roles.toString());
+        map.put("perm", perms.toString());
 
-        return "test/showUser";
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
 }

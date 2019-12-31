@@ -1,6 +1,6 @@
 package com.lovelive.sys.anno;
 
-import com.lovelive.sys.enums.OperTypeEnums;
+import com.lovelive.sys.enums.OperationTypeEnums;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -20,7 +20,7 @@ public @interface LogAnnotation {
     /**
      * 操作类型
      */
-    OperTypeEnums mold() default OperTypeEnums.MULTIPLE;
+    OperationTypeEnums mold() default OperationTypeEnums.MULTIPLE;
 
     /**
      * 方法说明

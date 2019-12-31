@@ -11,7 +11,23 @@ import com.lovelive.jwt.entity.TokenModel;
 public interface ITokenModelService {
 
     /**
-     * 保存tokenModel
+     * 检查 token 是否有效
+     *
+     * @param tokenModel
+     * @return
+     */
+    public boolean checkToken(TokenModel tokenModel);
+
+    /**
+     * 获取 tokenModel
+     *
+     * @param token
+     * @return
+     */
+    TokenModel getTokenModelByToken(String token);
+
+    /**
+     * 保存 tokenModel
      *
      * @param tokenModel
      * @return

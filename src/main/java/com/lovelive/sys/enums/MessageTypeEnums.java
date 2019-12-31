@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public enum MessageTypeEnums {
 
-    //states:1为使用中,0为停止使用
+    // states:1为使用中,0为停止使用
     /**
      * 系统消息
      */

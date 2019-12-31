@@ -2,7 +2,7 @@ package com.lovelive.lottery.entity;
 
 import com.lovelive.common.base.BaseEntity;
 import com.lovelive.lottery.enums.PrizeLevelEnums;
-import com.lovelive.sys.entity.AnnexFile;
+import com.lovelive.sys.entity.FileAttachment;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.List;
 @Table(name = "t_prize")
 public class Prize extends BaseEntity {
 
-    private static final long serialVersionUID = 3259783856081905819L;
+    private static final long serialVersionUID = -3028477240865744479L;
 
     /**
      * 名称
@@ -33,6 +33,7 @@ public class Prize extends BaseEntity {
 
     /**
      * 奖励等级
+     * PrizeLevelEnums
      */
     private int prizeLevel = PrizeLevelEnums.N.getValue();
 
@@ -40,7 +41,7 @@ public class Prize extends BaseEntity {
      * 图片
      */
     @OneToOne(fetch = FetchType.EAGER)
-    private AnnexFile picture;
+    private FileAttachment picture;
 
     /**
      * 奖品概率
@@ -80,11 +81,11 @@ public class Prize extends BaseEntity {
         this.prizeLevel = prizeLevel;
     }
 
-    public AnnexFile getPicture() {
+    public FileAttachment getPicture() {
         return picture;
     }
 
-    public void setPicture(AnnexFile picture) {
+    public void setPicture(FileAttachment picture) {
         this.picture = picture;
     }
 

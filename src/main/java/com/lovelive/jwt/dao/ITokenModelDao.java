@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ITokenModelDao extends BaseDao<TokenModel, String> {
+
+    TokenModel getTokenModelByToken(String token);
+
 }

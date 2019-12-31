@@ -22,7 +22,7 @@ public class TaskAspect {
 
     @Around("annotationCut()")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
-        //获取系统参数，配置为true才执行定时任务
+        // 获取系统参数，配置为 true 才执行定时任务
         if (Boolean.valueOf(System.getProperty("executeTask"))) {
             return pjp.proceed();
         }

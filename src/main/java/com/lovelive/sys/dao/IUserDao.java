@@ -17,10 +17,6 @@ public interface IUserDao extends BaseDao<User, String> {
 
     int deleteUserById(String id);
 
-    int deleteUserByAccount(String account);
-
-    User getUserRoleByAccount(String account);
-
     @Query(" select 1 from User u where u.account=:account ")
     Object existedAccount(@Param("account") String account);
 

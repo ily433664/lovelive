@@ -43,28 +43,12 @@ public interface IUserService {
     int deleteUserById(String id);
 
     /**
-     * 根据账号删除用户
-     *
-     * @param account
-     * @return
-     */
-    int deleteUserByAccount(String account);
-
-    /**
      * 保存用户
      *
      * @param user
      * @return
      */
     User saveUser(User user);
-
-    /**
-     * 根据账号获取UserRole
-     *
-     * @param account
-     * @return
-     */
-    User getUserRoleByAccount(String account);
 
     /**
      * 判断是否存在账号

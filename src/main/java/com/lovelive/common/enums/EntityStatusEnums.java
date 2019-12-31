@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public enum EntityStatusEnums {
 
-    //states:1为使用中,0为停止使用
+    // states:1为使用中,0为停止使用
     /**
      * 状态：正常
      */

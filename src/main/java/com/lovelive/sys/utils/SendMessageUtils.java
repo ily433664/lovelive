@@ -88,26 +88,26 @@ public class SendMessageUtils {
             String errorCode = "";
             try {
                 if (MessageTypeEnums.SYSTEM.getValue().equals(messageType)) {
-                    //系统内部消息
+                    // 系统内部消息
                     receivers.forEach(receiver -> {
                         //TODO  站内消息
                     });
                     sendSuccess = true;
                 } else if (MessageTypeEnums.EMAIL.getValue().equals(messageType)) {
-                    //邮件
+                    // 邮件
                     for (MessageReceiverPojo messageReceiverPojo : receivers) {
                         sendMessage.sendMail(messageReceiverPojo.getReceiverEmail(), messagePojo.getSubject(), messagePojo.getContent(), messagePojo.getAttachments());
                     }
                     sendSuccess = true;
                 } else if (MessageTypeEnums.WECHAT.getValue().equals(messageType)) {
-                    //微信
+                    // 微信
                     for (MessageReceiverPojo messageReceiverPojo : receivers) {
                         //TODO
                         //sendMessage.sendMsgCenter(messageType, messagePojo);
                     }
                     sendSuccess = true;
                 } else if (MessageTypeEnums.SMS.getValue().equals(messageType)) {
-                    //短信
+                    // 短信
                     for (MessageReceiverPojo messageReceiverPojo : receivers) {
                         //TODO
                         sendMessage.sendMobile(messageReceiverPojo.getReceiverMobile(), messagePojo.getContent());

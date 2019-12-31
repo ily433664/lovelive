@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * @author dhe
  * @date 2018-1-18
  */
-@Controller
+@RestController
 @RequestMapping(value = "/operationLog")
 public class OperationLogController extends BaseController {
 
@@ -27,7 +26,6 @@ public class OperationLogController extends BaseController {
         this.operationLogService = operationLogService;
     }
 
-    @ResponseBody
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getOperationLogById(@PathVariable("id") String id) {
         try {
@@ -35,14 +33,13 @@ public class OperationLogController extends BaseController {
             if (operationLog != null) {
                 return new ResponseEntity<>(operationLog, HttpStatus.OK);
             } else {
-                return new ResponseEntity(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @ResponseBody
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ResponseEntity<?> list(OperationLog operationLog) {
         try {
@@ -51,7 +48,7 @@ public class OperationLogController extends BaseController {
             Page<OperationLog> page = operationLogService.find(operationLog);
             return new ResponseEntity<>(page.getContent(), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

@@ -29,6 +29,7 @@ public class AuditTarget extends BaseEntity {
 
     /**
      * 当前的审状态
+     * AuditStatusEnums
      */
     private int nowAuditStatus = AuditStatusEnums.PENDING.getValue();
 

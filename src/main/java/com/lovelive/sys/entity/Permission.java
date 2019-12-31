@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "t_permission")
 public class Permission extends BaseEntity {
 
-    private static final long serialVersionUID = 4869032460478327944L;
+    private static final long serialVersionUID = -1909252799089400106L;
 
     /**
      * 代码

@@ -1,6 +1,7 @@
 package com.lovelive.sys.entity;
 
 import com.lovelive.common.base.BaseEntity;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,12 +13,12 @@ import java.util.Date;
  * @date 2019-12-15
  */
 @Entity
-@Table
+@Table(name = "t_change_link")
 public class ChangeLink extends BaseEntity {
 
     private static final long serialVersionUID = 3713775289425929603L;
 
-    @Lob
+    @Length(max = 3000)
     private String longURL;
 
     private Date createDate;

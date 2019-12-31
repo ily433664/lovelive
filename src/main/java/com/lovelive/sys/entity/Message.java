@@ -1,7 +1,6 @@
 package com.lovelive.sys.entity;
 
 import com.lovelive.common.base.BaseEntity;
-import com.lovelive.sys.enums.MessageTypeEnums;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -15,21 +14,17 @@ import java.util.Date;
  * @date 2019-4-26
  */
 @Entity
-@Table(
-        name = "t_message",
-        indexes = {
-                @Index(name = "idx_message_sender", columnList = "sender"),
-                @Index(name = "idx_message_recipient", columnList = "recipient")
-        }
-)
+@Table(name = "t_message")
 public class Message extends BaseEntity {
 
     private static final long serialVersionUID = 2878229841387651280L;
 
     /**
      * 消息类型
+     * MessageTypeEnums
      */
-    private String type = MessageTypeEnums.SYSTEM.getValue();
+    @NotBlank
+    private String type;
 
     /**
      * 已读消息

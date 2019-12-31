@@ -33,9 +33,9 @@ public class TimerTask {
     }
 
     /**
-     * 删除超过100天的日志
+     * 删除超过 100 天的日志
      */
-    @Scheduled(cron = "0 0 2 * * ?")    //每天凌晨两点执行
+    @Scheduled(cron = "0 0 2 * * ?")    // 每天凌晨两点执行
     public void DeleteOperationLogTaskCycle() {
 
         try {
@@ -66,7 +66,7 @@ public class TimerTask {
         }
 
         public void run() {
-            //执行方法
+            // 执行方法
             deleteOperationLog();
         }
 

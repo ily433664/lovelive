@@ -47,7 +47,7 @@ public class LotteryServiceImpl extends BaseService implements ILotteryService {
 
         List<Prize> resultList = new ArrayList<>();
 
-        //初始化抽奖Alias
+        // 初始化抽奖 Alias
         Map<String, Prize> prizeMap = new HashMap<>();
         TreeMap<String, Double> prizeChanceMap = new TreeMap<>();
         lottery.getPrizeChances().forEach(prizeChance -> {
@@ -59,7 +59,7 @@ public class LotteryServiceImpl extends BaseService implements ILotteryService {
         List<String> gifts = new ArrayList<>(prizeChanceMap.keySet());
         AliasMethod aliasMethod = new AliasMethod(new ArrayList<>(list));
 
-        //抽奖
+        // 抽奖
         List<PrizeRecord> prizeRecordList = new ArrayList<>();
         for (int i = 1; i <= num; i++) {
             int index = aliasMethod.next();

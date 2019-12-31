@@ -38,18 +38,8 @@ public class UserServiceImpl extends BaseService implements IUserService {
     }
 
     @Override
-    public int deleteUserByAccount(String account) {
-        return userDao.deleteUserByAccount(account);
-    }
-
-    @Override
     public User saveUser(User user) {
         return userDao.save(user);
-    }
-
-    @Override
-    public User getUserRoleByAccount(String account) {
-        return userDao.getUserRoleByAccount(account);
     }
 
     @Override

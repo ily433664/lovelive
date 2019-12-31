@@ -16,13 +16,14 @@ import javax.validation.constraints.NotNull;
 @Table(name = "t_modify_password")
 public class ModifyPassword extends BaseEntity {
 
-    private static final long serialVersionUID = -2149758563281834296L;
+    private static final long serialVersionUID = -3911015729385480428L;
 
     /**
      * 用户
      */
     @NotNull
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
 
     /**

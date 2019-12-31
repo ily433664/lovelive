@@ -4,18 +4,14 @@ import com.lovelive.common.base.BaseController;
 import com.lovelive.common.uitls.VerifyCodeUtils;
 import com.lovelive.sys.anno.LogAnnotation;
 import com.lovelive.sys.entity.User;
-import com.lovelive.sys.enums.OperTypeEnums;
+import com.lovelive.sys.enums.OperationTypeEnums;
 import com.lovelive.sys.service.IUserService;
 import com.lovelive.sys.utils.PasswordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author dHe
  * @date 2019-4-26
  */
-@Controller
+@RestController
 public class RegisterController extends BaseController {
 
     /**
@@ -43,28 +39,27 @@ public class RegisterController extends BaseController {
     /**
      * 注册
      */
-    @ResponseBody
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ResponseEntity<?> register() {
         try {
             //TODO  判断是否登录
             if (false) {
                 //已经登录
-                return new ResponseEntity(HttpStatus.OK);
+                return new ResponseEntity<>("is login", HttpStatus.OK);
             } else {
                 //未登录
-                return new ResponseEntity(HttpStatus.OK);
+                return new ResponseEntity<>("not login", HttpStatus.OK);
             }
         } catch (Exception e) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            log.error("", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     /**
      * 注册请求
      */
-    @LogAnnotation(mold = OperTypeEnums.MULTIPLE, description = "注册用户")
-    @ResponseBody
+    @LogAnnotation(mold = OperationTypeEnums.MULTIPLE, description = "注册用户")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> register(@ModelAttribute("account") String account, @ModelAttribute("password") String password, @ModelAttribute("name") String name, HttpServletRequest request, Model model) {
         try {
@@ -103,9 +98,10 @@ public class RegisterController extends BaseController {
             } catch (Exception e) {
                 log.error("", e);
             }
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            log.error("", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }

@@ -54,7 +54,7 @@ public class OperationLogAspect {
 
         Object object;
 
-        // 拦截的实体类，就是当前正在执行的controller
+        // 拦截的实体类，就是当前正在执行的 controller
         Object target = pjp.getTarget();
         // 拦截的方法名称，当前正在执行的方法
         String methodName = pjp.getSignature().getName();
@@ -70,35 +70,35 @@ public class OperationLogAspect {
 
         // 判断是否包含自定义的注解
         if (null != method && method.isAnnotationPresent(LogAnnotation.class)) {
-            OperationLog operationLog = new OperationLog();// 创建日志对象
+            OperationLog operationLog = new OperationLog(); // 创建日志对象
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
             LogAnnotation logAnnotation = method.getAnnotation(LogAnnotation.class);
-            operationLog.setOperType(logAnnotation.mold().getCode());// 操作类型
-            operationLog.setOperFunction(logAnnotation.description());// 操作功能
-            operationLog.setOperIP(NetworkUtils.getIpAddress(request));// IP地址
-            operationLog.setOperMethod(target.getClass().getName() + "." + methodName);// 操作方法
-            operationLog.setOperURI(request.getRequestURI());// operURI
-            operationLog.setOperParameter(new Gson().toJson(request.getParameterMap()));// 请求参数
-            operationLog.setUserAgent(request.getHeader("user-agent"));// 代理
+            operationLog.setOperType(logAnnotation.mold().getValue());  // 操作类型
+            operationLog.setOperFunction(logAnnotation.description());  // 操作功能
+            operationLog.setOperIP(NetworkUtils.getIpAddress(request)); // IP地址
+            operationLog.setOperMethod(target.getClass().getName() + "." + methodName); // 操作方法
+            operationLog.setOperURI(request.getRequestURI());   // operURI
+            operationLog.setOperParameter(new Gson().toJson(request.getParameterMap()));    // 请求参数
+            operationLog.setUserAgent(request.getHeader("user-agent")); // 代理
 
             Long startTime = Calendar.getInstance().getTimeInMillis();
             try {
-                object = pjp.proceed();// 执行请求
-                operationLog.setSuccessed(true);// 成功
-                operationLog.setResultContent(SUCCESS_RESULT_CONTENT);// 本次操作的结果
+                object = pjp.proceed(); // 执行请求
+                operationLog.setSuccessed(true);    // 成功
+                operationLog.setResultContent(SUCCESS_RESULT_CONTENT);  // 本次操作的结果
             } catch (Exception e) {
-                operationLog.setSuccessed(false);// 失败
-                operationLog.setResultContent(e.toString());// 异常情况
+                operationLog.setSuccessed(false);   // 失败
+                operationLog.setResultContent(e.toString());    // 异常情况
                 throw e;
             }
             Long endTime = Calendar.getInstance().getTimeInMillis();
-            operationLog.setResponseTime(endTime - startTime);// 响应时间
+            operationLog.setResponseTime(endTime - startTime);  // 响应时间
 
-            User user = UserUtils.getUser();// 获取当前用户
+            User user = UserUtils.getUser();    // 获取当前用户
 
             if (user != null) {
-                operationLog.setOperAccount(user.getAccount());// 用户账号
-                operationLog.setOperName(user.getUsername());// 用户名称
+                operationLog.setOperAccount(user.getAccount()); // 用户账号
+                operationLog.setOperName(user.getUsername());   // 用户名称
 
                 StringBuilder operRole = new StringBuilder();
                 if (user.getUserRoles() != null) {
@@ -106,13 +106,13 @@ public class OperationLogAspect {
                         operRole.append(userRole.getRole().getName()).append(",");
                     });
                     if (operRole.length() > 0) {
-                        operationLog.setOperRole(operRole.deleteCharAt(operRole.length() - 1).toString());// 用户角色
+                        operationLog.setOperRole(operRole.deleteCharAt(operRole.length() - 1).toString());  // 用户角色
                     }
                 }
             }
             operationLogService.saveOperationLog(operationLog);
         } else {
-            object = pjp.proceed();// 执行请求
+            object = pjp.proceed(); // 执行请求
         }
 
         return object;

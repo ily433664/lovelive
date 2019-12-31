@@ -8,7 +8,7 @@ package com.lovelive.sys.pojo;
  */
 public class MessageReceiverPojo {
 
-    //接收人信息----------------------------------------
+    // 接收人信息----------------------------------------
     /**
      * 接收人id
      */

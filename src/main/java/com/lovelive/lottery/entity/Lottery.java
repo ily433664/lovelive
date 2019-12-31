@@ -1,7 +1,7 @@
 package com.lovelive.lottery.entity;
 
 import com.lovelive.common.base.BaseEntity;
-import com.lovelive.sys.entity.AnnexFile;
+import com.lovelive.sys.entity.FileAttachment;
 
 import javax.persistence.*;
 import java.util.*;
@@ -16,7 +16,7 @@ import java.util.*;
 @Table(name = "t_lottery")
 public class Lottery extends BaseEntity {
 
-    private static final long serialVersionUID = -8738007480664652045L;
+    private static final long serialVersionUID = 8222123411639109858L;
 
     /**
      * 所属项目
@@ -39,7 +39,7 @@ public class Lottery extends BaseEntity {
      * 图片
      */
     @OneToOne(fetch = FetchType.EAGER)
-    private AnnexFile picture;
+    private FileAttachment picture;
 
     /**
      * 是否保底
@@ -119,11 +119,11 @@ public class Lottery extends BaseEntity {
         this.description = description;
     }
 
-    public AnnexFile getPicture() {
+    public FileAttachment getPicture() {
         return picture;
     }
 
-    public void setPicture(AnnexFile picture) {
+    public void setPicture(FileAttachment picture) {
         this.picture = picture;
     }
 

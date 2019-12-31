@@ -17,7 +17,7 @@ import java.util.List;
 @Table(name = "t_audit_action")
 public class AuditAction extends BaseEntity {
 
-    private static final long serialVersionUID = 3162623558016086640L;
+    private static final long serialVersionUID = 977921037242293249L;
 
     /**
      * 代码

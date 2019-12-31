@@ -14,58 +14,71 @@ import javax.persistence.*;
 @Table(name = "t_operation_log")
 public class OperationLog extends BaseEntity {
 
-    private static final long serialVersionUID = -601470489372751748L;
+    private static final long serialVersionUID = -3035172162661548458L;
 
     /**
      * 操作人账号
      */
     private String operAccount;
+
     /**
      * 操作人名称
      */
     private String operName;
+
     /**
      * 操作人角色
      */
     private String operRole;
+
     /**
      * IP地址
      */
     private String operIP;
+
     /**
      * 操作类型
+     * OperationTypeEnums
      */
     private String operType;
+
     /**
      * 操作功能
      */
     private String operFunction;
+
     /**
      * 操作方法
      */
     private String operMethod;
+
     /**
      * 请求URI
      */
     private String operURI;
+
     /**
      * 请求参数
      */
     @Lob
     private String operParameter;
+
     /**
      * 代理
      */
     @Lob
     private String userAgent;
+
     /**
      * 响应时间 ms
      */
     private long responseTime;
+
     /**
      * 操作是否成功,true:成功完成，没有系统异常   false:系统异常
      */
     private Boolean successed;
+
     /**
      * 本次操作的结果 ,如果系统异常则增加显示异常信息
      */

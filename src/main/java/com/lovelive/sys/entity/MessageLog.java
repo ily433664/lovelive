@@ -31,6 +31,7 @@ public class MessageLog extends BaseEntity {
     private String title;
     /**
      * 消息类型
+     * MessageTypeEnums
      */
     private String msgType;
     /**
