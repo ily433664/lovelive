@@ -3,6 +3,7 @@ package com.lovelive.jwt.entity;
 import com.lovelive.common.base.BaseEntity;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.Table;
 
 /**
@@ -12,7 +13,13 @@ import javax.persistence.Table;
  * @date 2019-12-19
  */
 @Entity
-@Table(name = "t_token_model")
+@Table(
+        name = "t_token_model",
+        indexes = {
+                @Index(name = "idx_token_model_userid", columnList = "userId"),
+                @Index(name = "idx_token_token", columnList = "token")
+        }
+)
 public class TokenModel extends BaseEntity {
 
     private static final long serialVersionUID = 4683545611495337664L;

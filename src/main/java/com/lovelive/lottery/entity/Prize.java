@@ -5,8 +5,8 @@ import com.lovelive.lottery.enums.PrizeLevelEnums;
 import com.lovelive.sys.entity.FileAttachment;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * 奖励
@@ -18,7 +18,7 @@ import java.util.List;
 @Table(name = "t_prize")
 public class Prize extends BaseEntity {
 
-    private static final long serialVersionUID = -3028477240865744479L;
+    private static final long serialVersionUID = -2540387804404152879L;
 
     /**
      * 名称
@@ -47,7 +47,7 @@ public class Prize extends BaseEntity {
      * 奖品概率
      */
     @OneToMany(mappedBy = "prize", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<PrizeChance> prizeChances = new ArrayList<>();
+    private Set<PrizeChance> prizeChances = new LinkedHashSet<>();
 
     public Prize() {
         super();
@@ -89,11 +89,11 @@ public class Prize extends BaseEntity {
         this.picture = picture;
     }
 
-    public List<PrizeChance> getPrizeChances() {
+    public Set<PrizeChance> getPrizeChances() {
         return prizeChances;
     }
 
-    public void setPrizeChances(List<PrizeChance> prizeChances) {
+    public void setPrizeChances(Set<PrizeChance> prizeChances) {
         this.prizeChances = prizeChances;
     }
 }

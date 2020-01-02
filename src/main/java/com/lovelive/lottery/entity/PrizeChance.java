@@ -24,13 +24,13 @@ public class PrizeChance extends BaseEntity {
     /**
      * 所属抽奖
      */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Lottery lottery;
 
     /**
      * 奖品
      */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Prize prize;
 
     public PrizeChance() {

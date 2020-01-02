@@ -3,8 +3,8 @@ package com.lovelive.sys.entity;
 import com.lovelive.common.base.BaseEntity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * 操作权限
@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "t_permission")
 public class Permission extends BaseEntity {
 
-    private static final long serialVersionUID = -1909252799089400106L;
+    private static final long serialVersionUID = 317142434223781832L;
 
     /**
      * 代码
@@ -32,7 +32,7 @@ public class Permission extends BaseEntity {
      * 拥有此操作的角色
      */
     @OneToMany(mappedBy = "permission", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<RolePermission> rolePermissions = new ArrayList<>();
+    private Set<RolePermission> rolePermissions = new LinkedHashSet<>();
 
     public Permission() {
         super();
@@ -58,11 +58,11 @@ public class Permission extends BaseEntity {
         this.name = name;
     }
 
-    public List<RolePermission> getRolePermissions() {
+    public Set<RolePermission> getRolePermissions() {
         return rolePermissions;
     }
 
-    public void setRolePermissions(List<RolePermission> rolePermissions) {
+    public void setRolePermissions(Set<RolePermission> rolePermissions) {
         this.rolePermissions = rolePermissions;
     }
 }

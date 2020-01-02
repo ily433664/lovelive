@@ -22,13 +22,13 @@ public abstract class AuditRecord extends BaseEntity {
      * 所属审核对象
      */
     @NotNull
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private AuditTarget auditTarget;
 
     /**
      * 审批人
      */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private User auditUser;
 
     /**
@@ -44,7 +44,7 @@ public abstract class AuditRecord extends BaseEntity {
     /**
      * 审核动作
      */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private AuditAction auditAction;
 
     private AuditRecord() {

@@ -20,13 +20,13 @@ public class UserRole extends BaseEntity {
     /**
      * 用户
      */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
     /**
      * 角色
      */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Role role;
 
     public UserRole() {

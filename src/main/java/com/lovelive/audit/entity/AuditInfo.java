@@ -3,8 +3,8 @@ package com.lovelive.audit.entity;
 import com.lovelive.common.base.BaseEntity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * 审核信息
@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "t_audit_info")
 public class AuditInfo extends BaseEntity {
 
-    private static final long serialVersionUID = 7689878889029303816L;
+    private static final long serialVersionUID = -5812297009811974724L;
 
     /**
      * 代码
@@ -32,7 +32,7 @@ public class AuditInfo extends BaseEntity {
      * 拥有的审核动作
      */
     @OneToMany(mappedBy = "auditInfo", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<AuditAction> auditActions = new ArrayList<>();
+    private Set<AuditAction> auditActions = new LinkedHashSet<>();
 
     public AuditInfo() {
         super();
@@ -58,11 +58,11 @@ public class AuditInfo extends BaseEntity {
         this.name = name;
     }
 
-    public List<AuditAction> getAuditActions() {
+    public Set<AuditAction> getAuditActions() {
         return auditActions;
     }
 
-    public void setAuditActions(List<AuditAction> auditActions) {
+    public void setAuditActions(Set<AuditAction> auditActions) {
         this.auditActions = auditActions;
     }
 }

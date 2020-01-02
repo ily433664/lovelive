@@ -20,13 +20,13 @@ public class AuditRole extends BaseEntity {
     /**
      * 用户
      */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private AuditAction auditAction;
 
     /**
      * 角色
      */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Role role;
 
     public AuditRole() {

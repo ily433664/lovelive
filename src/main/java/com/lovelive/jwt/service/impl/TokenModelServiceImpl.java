@@ -46,7 +46,7 @@ public class TokenModelServiceImpl extends BaseService implements ITokenModelSer
                 CacheUtils.put(CacheUtils.TOKEN_CACHE, tokenModel.getToken(), tokenModel);
             }
         }
-        return tokenModelDao.getTokenModelByToken(token);
+        return tokenModel;
     }
 
     @Override

@@ -22,8 +22,7 @@ public class ModifyPassword extends BaseEntity {
      * 用户
      */
     @NotNull
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
     /**

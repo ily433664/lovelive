@@ -16,12 +16,12 @@ import java.util.*;
 @Table(name = "t_lottery")
 public class Lottery extends BaseEntity {
 
-    private static final long serialVersionUID = 8222123411639109858L;
+    private static final long serialVersionUID = -2799672479955217145L;
 
     /**
      * 所属项目
      */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private LotteryProject lotteryProject;
 
     /**
@@ -85,7 +85,7 @@ public class Lottery extends BaseEntity {
      * 奖品概率
      */
     @OneToMany(mappedBy = "lottery", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<PrizeChance> prizeChances = new ArrayList<>();
+    private Set<PrizeChance> prizeChances = new LinkedHashSet<>();
 
     public Lottery() {
         super();
@@ -191,11 +191,11 @@ public class Lottery extends BaseEntity {
         this.publishDate = publishDate;
     }
 
-    public List<PrizeChance> getPrizeChances() {
+    public Set<PrizeChance> getPrizeChances() {
         return prizeChances;
     }
 
-    public void setPrizeChances(List<PrizeChance> prizeChances) {
+    public void setPrizeChances(Set<PrizeChance> prizeChances) {
         this.prizeChances = prizeChances;
     }
 }

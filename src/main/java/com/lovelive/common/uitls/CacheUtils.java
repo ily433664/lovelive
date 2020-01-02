@@ -9,9 +9,7 @@ import com.lovelive.sys.service.IRoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Cache 工具类

@@ -19,13 +19,13 @@ public class RolePermission extends BaseEntity {
     /**
      * 角色
      */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Role role;
 
     /**
      * 操作
      */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Permission permission;
 
     public RolePermission() {

@@ -3,8 +3,8 @@ package com.lovelive.sys.entity;
 import com.lovelive.common.base.BaseEntity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * 字典
@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "t_dict")
 public class Dict extends BaseEntity {
 
-    private static final long serialVersionUID = -551758085086071338L;
+    private static final long serialVersionUID = 3505826402587752732L;
 
     /**
      * 类型
@@ -52,14 +52,14 @@ public class Dict extends BaseEntity {
     /**
      * 上级字典
      */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Dict parent;
 
     /**
      * 下级字典
      */
     @OneToMany(mappedBy = "parent", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<Dict> dicts = new ArrayList<>();
+    private Set<Dict> dicts = new LinkedHashSet<>();
 
     public Dict() {
         super();
@@ -125,11 +125,11 @@ public class Dict extends BaseEntity {
         this.parent = parent;
     }
 
-    public List<Dict> getDicts() {
+    public Set<Dict> getDicts() {
         return dicts;
     }
 
-    public void setDicts(List<Dict> dicts) {
+    public void setDicts(Set<Dict> dicts) {
         this.dicts = dicts;
     }
 }

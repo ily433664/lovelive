@@ -4,8 +4,8 @@ import com.lovelive.common.base.BaseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * 审核动作
@@ -17,7 +17,7 @@ import java.util.List;
 @Table(name = "t_audit_action")
 public class AuditAction extends BaseEntity {
 
-    private static final long serialVersionUID = 977921037242293249L;
+    private static final long serialVersionUID = -2382803219151615974L;
 
     /**
      * 代码
@@ -33,7 +33,7 @@ public class AuditAction extends BaseEntity {
      * 所属审核
      */
     @NotNull
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private AuditInfo auditInfo;
 
     /**
@@ -67,7 +67,7 @@ public class AuditAction extends BaseEntity {
      * 审核角色
      */
     @OneToMany(mappedBy = "auditAction", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<AuditRole> auditRoles = new ArrayList<>();
+    private Set<AuditRole> auditRoles = new LinkedHashSet<>();
 
     public AuditAction() {
         super();
@@ -141,11 +141,11 @@ public class AuditAction extends BaseEntity {
         this.leapfrog = leapfrog;
     }
 
-    public List<AuditRole> getAuditRoles() {
+    public Set<AuditRole> getAuditRoles() {
         return auditRoles;
     }
 
-    public void setAuditRoles(List<AuditRole> auditRoles) {
+    public void setAuditRoles(Set<AuditRole> auditRoles) {
         this.auditRoles = auditRoles;
     }
 }

@@ -55,7 +55,7 @@ public class JwtUtils {
                 .setId(user.getId())
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date())
-                .setExpiration(JwtConfig.EXPIRATION_DATE)
+                //.setExpiration(JwtConfig.EXPIRATION_DATE)
                 .signWith(JwtConfig.SIGNATURE_ALGORITHM, secretKey)
                 .compact();
         // 生成 TokenModel

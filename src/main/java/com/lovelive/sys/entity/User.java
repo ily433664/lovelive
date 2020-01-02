@@ -4,9 +4,7 @@ import com.lovelive.common.base.BaseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * 用户
@@ -24,7 +22,7 @@ import java.util.List;
 )
 public class User extends BaseEntity {
 
-    private static final long serialVersionUID = -1412831677803038884L;
+    private static final long serialVersionUID = 6137457354012580573L;
 
     /**
      * 用户类型
@@ -111,7 +109,7 @@ public class User extends BaseEntity {
      * 用户的角色
      */
     @OneToMany(mappedBy = "user", cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    private List<UserRole> userRoles = new ArrayList<>();
+    private Set<UserRole> userRoles = new LinkedHashSet<>();
 
     public User() {
         super();
@@ -241,12 +239,11 @@ public class User extends BaseEntity {
         this.photo = photo;
     }
 
-    public List<UserRole> getUserRoles() {
+    public Set<UserRole> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(List<UserRole> userRoles) {
+    public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
-
 }

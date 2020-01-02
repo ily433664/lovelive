@@ -4,8 +4,8 @@ import com.lovelive.common.base.BaseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * 角色
@@ -17,7 +17,7 @@ import java.util.List;
 @Table(name = "t_role")
 public class Role extends BaseEntity {
 
-    private static final long serialVersionUID = 3547529138085233166L;
+    private static final long serialVersionUID = -5338617333746248299L;
 
     /**
      * 角色类型
@@ -42,13 +42,13 @@ public class Role extends BaseEntity {
      * 拥有此角色的用户
      */
     @OneToMany(mappedBy = "role", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<UserRole> userRoles = new ArrayList<>();
+    private Set<UserRole> userRoles = new LinkedHashSet<>();
 
     /**
      * 此角色拥有的操作
      */
     @OneToMany(mappedBy = "role", cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    private List<RolePermission> rolePermissions = new ArrayList<>();
+    private Set<RolePermission> rolePermissions = new LinkedHashSet<>();
 
     public Role() {
         super();
@@ -82,19 +82,19 @@ public class Role extends BaseEntity {
         this.name = name;
     }
 
-    public List<UserRole> getUserRoles() {
+    public Set<UserRole> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(List<UserRole> userRoles) {
+    public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
 
-    public List<RolePermission> getRolePermissions() {
+    public Set<RolePermission> getRolePermissions() {
         return rolePermissions;
     }
 
-    public void setRolePermissions(List<RolePermission> rolePermissions) {
+    public void setRolePermissions(Set<RolePermission> rolePermissions) {
         this.rolePermissions = rolePermissions;
     }
 }

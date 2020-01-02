@@ -5,8 +5,8 @@ import com.lovelive.common.base.BaseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * 审核对象
@@ -18,13 +18,13 @@ import java.util.List;
 @Table(name = "t_audit_target")
 public class AuditTarget extends BaseEntity {
 
-    private static final long serialVersionUID = 2339228268077647446L;
+    private static final long serialVersionUID = 4442892203227139884L;
 
     /**
      * 所属审核
      */
     @NotNull
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private AuditInfo auditInfo;
 
     /**
@@ -36,14 +36,14 @@ public class AuditTarget extends BaseEntity {
     /**
      * 当前的审核动作
      */
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private AuditAction nowAuditAction;
 
     /**
      * 审核记录
      */
     @OneToMany(mappedBy = "auditTarget", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<AuditRecord> auditRecords = new ArrayList<>();
+    private Set<AuditRecord> auditRecords = new LinkedHashSet<>();
 
     public AuditTarget() {
         super();
@@ -77,11 +77,11 @@ public class AuditTarget extends BaseEntity {
         this.nowAuditAction = nowAuditAction;
     }
 
-    public List<AuditRecord> getAuditRecords() {
+    public Set<AuditRecord> getAuditRecords() {
         return auditRecords;
     }
 
-    public void setAuditRecords(List<AuditRecord> auditRecords) {
+    public void setAuditRecords(Set<AuditRecord> auditRecords) {
         this.auditRecords = auditRecords;
     }
 }

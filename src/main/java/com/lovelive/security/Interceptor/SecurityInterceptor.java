@@ -1,6 +1,8 @@
 package com.lovelive.security.Interceptor;
 
 import com.lovelive.jwt.utils.JwtUtils;
+import com.lovelive.security.auth.Subject;
+import com.lovelive.security.utils.SecurityUtils;
 import io.jsonwebtoken.Claims;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +29,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
         Claims claims = JwtUtils.checkToken(request);
         if (claims != null) {
 
+            Subject subject = SecurityUtils.getSubject();
 
             return true;
         }

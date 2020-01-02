@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 用户 controller
@@ -64,11 +64,11 @@ public class UserController extends BaseController {
         StringBuilder roles = new StringBuilder();
         StringBuilder perms = new StringBuilder();
 
-        List<UserRole> userRoles = user.getUserRoles();
+        Set<UserRole> userRoles = user.getUserRoles();
         for (UserRole userRole : userRoles) {
             roles.append(userRole.getRole().getName()).append(", ");
 
-            List<RolePermission> rolePermissions = userRole.getRole().getRolePermissions();
+            Set<RolePermission> rolePermissions = userRole.getRole().getRolePermissions();
             for (RolePermission rolePermission : rolePermissions) {
                 perms.append(rolePermission.getPermission().getId()).append(", ");
             }
