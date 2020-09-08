@@ -38,6 +38,11 @@ public class OperationLogServiceImpl extends BaseService implements IOperationLo
     }
 
     @Override
+    public void deleteOperationLog(OperationLog operationLog) {
+        operationLogDAO.delete(operationLog);
+    }
+
+    @Override
     public Page<OperationLog> find(OperationLog operationLog) {
 
         Specification<OperationLog> specification = new Specification<OperationLog>() {

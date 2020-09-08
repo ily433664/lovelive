@@ -14,6 +14,8 @@ public interface IOperationLogService {
 
     OperationLog saveOperationLog(OperationLog operationLog);
 
+    void deleteOperationLog(OperationLog operationLog);
+
     Page<OperationLog> find(OperationLog operationLog);
 
 }

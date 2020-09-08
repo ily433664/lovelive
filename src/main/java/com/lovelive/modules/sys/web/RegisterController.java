@@ -28,7 +28,7 @@ public class RegisterController extends BaseController {
      */
     private static final String CAPTCHA_NAME = "validateCode";
 
-    private IUserService userService;
+    private final IUserService userService;
 
     @Autowired
     public RegisterController(IUserService userService) {
