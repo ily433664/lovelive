@@ -1,7 +1,7 @@
 package com.lovelive.audit.entity;
 
 import com.lovelive.common.base.BaseEntity;
-import com.lovelive.sys.entity.User;
+import com.lovelive.modules.sys.entity.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

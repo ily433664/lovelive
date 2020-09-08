@@ -1,7 +1,6 @@
 package com.lovelive.common.base;
 
 import com.lovelive.common.enums.EntityStatusEnums;
-import com.lovelive.sys.entity.User;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -44,8 +43,7 @@ public abstract class BaseEntity implements Serializable {
     /**
      * 创建者
      */
-    @ManyToOne(fetch = FetchType.LAZY)
-    protected User createBy;
+    protected Long createById;
 
     /**
      * 最近更新时间
@@ -57,8 +55,7 @@ public abstract class BaseEntity implements Serializable {
     /**
      * 更新者
      */
-    @ManyToOne(fetch = FetchType.LAZY)
-    protected User updateBy;
+    protected Long updateById;
 
     /**
      * 是否删除
@@ -73,8 +70,7 @@ public abstract class BaseEntity implements Serializable {
     /**
      * 删除者
      */
-    @ManyToOne(fetch = FetchType.LAZY)
-    protected User deleteBy;
+    protected Long deleteById;
 
     /**
      * 更新标记
@@ -138,12 +134,12 @@ public abstract class BaseEntity implements Serializable {
         this.createTime = createTime;
     }
 
-    public User getCreateBy() {
-        return createBy;
+    public Long getCreateById() {
+        return createById;
     }
 
-    public void setCreateBy(User createBy) {
-        this.createBy = createBy;
+    public void setCreateById(Long createById) {
+        this.createById = createById;
     }
 
     public Date getUpdateTime() {
@@ -154,12 +150,12 @@ public abstract class BaseEntity implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public User getUpdateBy() {
-        return updateBy;
+    public Long getUpdateById() {
+        return updateById;
     }
 
-    public void setUpdateBy(User updateBy) {
-        this.updateBy = updateBy;
+    public void setUpdateById(Long updateById) {
+        this.updateById = updateById;
     }
 
     public boolean isDeleted() {
@@ -178,12 +174,12 @@ public abstract class BaseEntity implements Serializable {
         this.deleteTime = deleteTime;
     }
 
-    public User getDeleteBy() {
-        return deleteBy;
+    public Long getDeleteById() {
+        return deleteById;
     }
 
-    public void setDeleteBy(User deleteBy) {
-        this.deleteBy = deleteBy;
+    public void setDeleteById(Long deleteById) {
+        this.deleteById = deleteById;
     }
 
     public int getFlag() {

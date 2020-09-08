@@ -1,7 +1,7 @@
 package com.lovelive.audit.entity;
 
 import com.lovelive.common.base.BaseEntity;
-import com.lovelive.sys.entity.Role;
+import com.lovelive.modules.sys.entity.Role;
 
 import javax.persistence.*;
 

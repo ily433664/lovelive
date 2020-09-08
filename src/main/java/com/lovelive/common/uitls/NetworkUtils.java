@@ -57,7 +57,7 @@ public class NetworkUtils {
      * @return
      */
     public static boolean isMobile(String userAgent) {
-        if (userAgent != null) {
+        if (StringUtils.isNotBlank(userAgent)) {
             String[] agents = new String[]{"android", "iphone", "symbianos", "windows phone", "ipad", "ipod"};
             for (String agent : agents) {
                 if (userAgent.toLowerCase().contains(agent)) {
@@ -66,6 +66,16 @@ public class NetworkUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 判断是否是移动端
+     *
+     * @param request
+     * @return
+     */
+    public static boolean isMobile(HttpServletRequest request) {
+        return isMobile(request.getHeader("user-agent"));
     }
 
     /**

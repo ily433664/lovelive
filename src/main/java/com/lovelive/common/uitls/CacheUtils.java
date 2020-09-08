@@ -1,11 +1,11 @@
 package com.lovelive.common.uitls;
 
-import com.lovelive.sys.entity.MailConfig;
-import com.lovelive.sys.entity.Permission;
-import com.lovelive.sys.entity.Role;
-import com.lovelive.sys.service.IMailConfigService;
-import com.lovelive.sys.service.IPermissionService;
-import com.lovelive.sys.service.IRoleService;
+import com.lovelive.modules.sys.entity.MailConfig;
+import com.lovelive.modules.sys.entity.Permission;
+import com.lovelive.modules.sys.entity.Role;
+import com.lovelive.modules.sys.service.IMailConfigService;
+import com.lovelive.modules.sys.service.IPermissionService;
+import com.lovelive.modules.sys.service.IRoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

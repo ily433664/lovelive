@@ -1,7 +1,7 @@
 package com.lovelive.common.uitls;
 
 import com.lovelive.common.enums.EntityStatusEnums;
-import com.lovelive.sys.entity.MailConfig;
+import com.lovelive.modules.sys.entity.MailConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSenderImpl;

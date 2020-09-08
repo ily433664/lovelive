@@ -6,7 +6,7 @@ import com.lovelive.jwt.config.JwtConfig;
 import com.lovelive.jwt.entity.TokenModel;
 import com.lovelive.jwt.exception.JwtAuthenticationException;
 import com.lovelive.jwt.service.ITokenModelService;
-import com.lovelive.sys.entity.User;
+import com.lovelive.modules.sys.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.slf4j.Logger;

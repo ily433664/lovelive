@@ -1,12 +1,12 @@
 package com.lovelive.common.uitls;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lovelive.sys.entity.MessageLog;
-import com.lovelive.sys.enums.MessageTypeEnums;
-import com.lovelive.sys.pojo.MessagePojo;
-import com.lovelive.sys.pojo.MessageReceiverPojo;
-import com.lovelive.sys.service.IMessageLogService;
-import com.lovelive.sys.service.IMessageService;
+import com.lovelive.modules.sys.entity.MessageLog;
+import com.lovelive.modules.sys.enums.MessageTypeEnums;
+import com.lovelive.modules.sys.pojo.MessagePojo;
+import com.lovelive.modules.sys.pojo.MessageReceiverPojo;
+import com.lovelive.modules.sys.service.IMessageLogService;
+import com.lovelive.modules.sys.service.IMessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

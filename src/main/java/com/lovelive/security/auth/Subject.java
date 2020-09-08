@@ -2,8 +2,8 @@ package com.lovelive.security.auth;
 
 import com.lovelive.common.uitls.StringUtils;
 import com.lovelive.jwt.utils.JwtUtils;
-import com.lovelive.sys.entity.Permission;
-import com.lovelive.sys.entity.Role;
+import com.lovelive.modules.sys.entity.Permission;
+import com.lovelive.modules.sys.entity.Role;
 
 import java.util.Collection;
 import java.util.Map;

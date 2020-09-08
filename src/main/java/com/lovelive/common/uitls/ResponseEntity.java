@@ -1,6 +1,6 @@
 package com.lovelive.common.uitls;
 
-import com.lovelive.sys.utils.Global;
+import com.lovelive.modules.sys.utils.Global;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

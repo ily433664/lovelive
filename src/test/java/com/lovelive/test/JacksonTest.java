@@ -2,9 +2,9 @@ package com.lovelive.test;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lovelive.sys.entity.Message;
-import com.lovelive.sys.entity.User;
-import com.lovelive.sys.enums.MessageTypeEnums;
+import com.lovelive.modules.sys.entity.Message;
+import com.lovelive.modules.sys.entity.User;
+import com.lovelive.modules.sys.enums.MessageTypeEnums;
 
 import java.util.Map;
 

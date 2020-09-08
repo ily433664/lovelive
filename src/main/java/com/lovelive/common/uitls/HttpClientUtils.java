@@ -1,6 +1,6 @@
 package com.lovelive.common.uitls;
 
-import org.apache.commons.codec.Charsets;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.HttpRequestRetryHandler;
@@ -37,8 +37,7 @@ import java.util.Map.Entry;
  */
 public class HttpClientUtils {
 
-    private static HttpClient httpClient;
-
+    private static final HttpClient httpClient;
     /**
      * 最大连接数
      */
@@ -62,7 +61,11 @@ public class HttpClientUtils {
     /**
      * 请求配置，可以复用
      */
-    private static RequestConfig requestConfig;
+    private static final RequestConfig requestConfig;
+    /**
+     * 默认编码格式
+     */
+    private static final String charset = "UTF-8";
 
     static {
         SocketConfig socketConfig = SocketConfig.custom()
@@ -98,17 +101,16 @@ public class HttpClientUtils {
      * 测试get方法
      */
     private static void testGet() {
-        String url = "http://xiaoyoudemo.dcampus.com/alumni//interface/getAlumniInfo.jsp";
+        String url = "";
 
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("currentTimeMillis", System.currentTimeMillis() + "");
-        paramMap.put("account", "445281199604213135");
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("currentTimeMillis", System.currentTimeMillis());
 
-        List<Header> headers = new ArrayList<>();
+        List<Header> headers = new ArrayList<Header>();
         headers.add(new BasicHeader("X-AUTH-TOKEN", "token"));
 
         try {
-            String result = get(url, paramMap, headers);
+            String result = get(url, paramMap, headers, charset);
             System.out.println(result);
         } catch (Exception e) {
             e.printStackTrace();
@@ -119,34 +121,16 @@ public class HttpClientUtils {
      * 测试post方法
      */
     private static void testPost() {
-        String url = "http://xiaoyoudemo.dcampus.com/alumni//interface/editAlumniInfo.jsp";
+        String url = "";
 
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("currentTimeMillis", System.currentTimeMillis() + "");
-        paramMap.put("account", "445281199604213135");
-        paramMap.put("sex", "2");
-        paramMap.put("birthDate", "1996-04-21");
-        paramMap.put("nativePlace", "广东广州");
-        paramMap.put("nationCode", "1");
-        paramMap.put("workUnit", "%E5%B9%BF%E5%B7%9E%E7%BE%8E%E6%9C%AF%E5%AD%A6%guang%99%A2");
-        paramMap.put("job", "%E6%97%A0");
-        paramMap.put("clanCode", "1");
-        paramMap.put("mobilePhone1", "13512345678");
-        paramMap.put("email", "710122069@qq.com");
-        paramMap.put("addressArea", "2");
-        paramMap.put("address", "%E6%97%A0");
-        paramMap.put("schoolRecordId", "131");
-        paramMap.put("graduateYear_131", "2015");
-        paramMap.put("diplomaId_131", "45");
-        paramMap.put("departmentId_131", "114");
-        paramMap.put("specialtyId_131", "1753");
-        paramMap.put("studentNo_131", "");
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("currentTimeMillis", System.currentTimeMillis());
 
-        List<Header> headers = new ArrayList<>();
+        List<Header> headers = new ArrayList<Header>();
         headers.add(new BasicHeader("X-AUTH-TOKEN", "token"));
 
         try {
-            String result = post(url, paramMap, headers);
+            String result = post(url, paramMap, headers, charset);
             System.out.println(result);
         } catch (Exception e) {
             e.printStackTrace();
@@ -156,19 +140,23 @@ public class HttpClientUtils {
     /**
      * post请求
      *
-     * @param url
-     * @param paramMap
-     * @param headers
-     * @return
+     * @param url      请求地址
+     * @param paramMap 参数
+     * @param headers  请求头
+     * @param charset  编码格式
+     * @return String
      * @throws IOException
      */
-    public static String post(String url, Map<String, Object> paramMap, List<Header> headers) throws IOException {
+    private static String post(String url, Map<String, Object> paramMap, List<Header> headers, String charset) throws IOException {
         HttpPost httpPost = new HttpPost(url);
 
-        List<NameValuePair> content = new ArrayList<>();
+        List<NameValuePair> content = new ArrayList<NameValuePair>();
         if (paramMap != null) {
             // 添加请求参数
             for (Entry<String, Object> entry : paramMap.entrySet()) {
+                if (entry == null) {
+                    continue;
+                }
                 if (entry.getValue().getClass().isArray()) {
                     for (Object obj : (List) entry.getValue()) {
                         if (obj != null) {
@@ -183,7 +171,7 @@ public class HttpClientUtils {
             }
         }
         if (content.size() > 0) {
-            UrlEncodedFormEntity entity = new UrlEncodedFormEntity(content, "UTF-8");
+            UrlEncodedFormEntity entity = new UrlEncodedFormEntity(content, charset);
             httpPost.setEntity(entity);
         }
 
@@ -199,49 +187,109 @@ public class HttpClientUtils {
         // 执行请求
         HttpResponse response = httpClient.execute(httpPost);
 
-        return EntityUtils.toString(response.getEntity(), Charsets.UTF_8);
+        return EntityUtils.toString(response.getEntity(), charset);
     }
 
     /**
      * post请求，不带请求首部
      *
-     * @param url
-     * @param paramMap
-     * @return
+     * @param url      请求地址
+     * @param paramMap 参数
+     * @return String
      * @throws IOException
      */
     public static String post(String url, Map<String, Object> paramMap) throws IOException {
-        return post(url, paramMap, null);
+        return post(url, paramMap, charset);
+    }
+
+    /**
+     * post请求，不带请求首部
+     *
+     * @param url      请求地址
+     * @param paramMap 参数
+     * @param charset  编码格式
+     * @return String
+     * @throws IOException
+     */
+    public static String post(String url, Map<String, Object> paramMap, String charset) throws IOException {
+        return post(url, paramMap, null, charset);
     }
 
     /**
      * jwt post请求
      *
-     * @param url
-     * @param paramMap
-     * @return
+     * @param url      请求地址
+     * @param paramMap 参数
+     * @param token    令牌
+     * @return JsonNode
      * @throws IOException
      */
     public static String postByJwt(String url, Map<String, Object> paramMap, String token) throws IOException {
-        List<Header> headers = new ArrayList<>();
+        return postByJwt(url, paramMap, token, charset);
+    }
+
+    /**
+     * jwt post请求
+     *
+     * @param url      请求地址
+     * @param paramMap 参数
+     * @param token    令牌
+     * @param charset  编码格式
+     * @return JsonNode
+     * @throws IOException
+     */
+    public static String postByJwt(String url, Map<String, Object> paramMap, String token, String charset) throws IOException {
+        List<Header> headers = new ArrayList<Header>();
         headers.add(new BasicHeader("X-AUTH-TOKEN", token));
-        return post(url, paramMap, headers);
+        return post(url, paramMap, headers, charset);
+    }
+
+    /**
+     * jwt post请求
+     *
+     * @param url      请求地址
+     * @param paramMap 参数
+     * @param token    令牌
+     * @return JsonNode
+     * @throws IOException
+     */
+    public static JsonNode postByJwtToJsonNode(String url, Map<String, Object> paramMap, String token) throws IOException {
+        return postByJwtToJsonNode(url, paramMap, token, charset);
+    }
+
+    /**
+     * jwt post请求
+     *
+     * @param url      请求地址
+     * @param paramMap 参数
+     * @param token    令牌
+     * @param charset  编码格式
+     * @return JsonNode
+     * @throws IOException
+     */
+    public static JsonNode postByJwtToJsonNode(String url, Map<String, Object> paramMap, String token, String charset) throws IOException {
+        return JsonUtils.toJsonNode(postByJwt(url, paramMap, token, charset));
     }
 
     /**
      * get请求
      *
-     * @param url
-     * @param paramMap
-     * @param headers
-     * @return
-     * @throws URISyntaxException, IOException
+     * @param url      请求地址
+     * @param paramMap 参数
+     * @param headers  请求头
+     * @param charset  编码格式
+     * @return String
+     * @throws URISyntaxException
+     * @throws IOException
      */
-    public static String get(String url, Map<String, Object> paramMap, List<Header> headers) throws URISyntaxException, IOException {
+    private static String get(String url, Map<String, Object> paramMap, List<Header> headers, String charset) throws URISyntaxException, IOException {
         URIBuilder uriBuilder = new URIBuilder(url);
         if (paramMap != null) {
             // 添加请求参数
             for (Entry<String, Object> entry : paramMap.entrySet()) {
+                if (entry == null) {
+                    continue;
+                }
                 if (entry.getValue().getClass().isArray()) {
                     for (Object obj : (List) entry.getValue()) {
                         if (obj != null) {
@@ -268,33 +316,94 @@ public class HttpClientUtils {
 
         HttpResponse response = httpClient.execute(httpGet);// 执行请求
 
-        return EntityUtils.toString(response.getEntity(), Charsets.UTF_8);
+        return EntityUtils.toString(response.getEntity(), charset);
     }
 
     /**
      * get请求，不带请求首部
      *
-     * @param url
-     * @param paramMap
-     * @return
-     * @throws URISyntaxException, IOException
+     * @param url      请求地址
+     * @param paramMap 参数
+     * @return String
+     * @throws URISyntaxException
+     * @throws IOException
      */
     public static String get(String url, Map<String, Object> paramMap) throws URISyntaxException, IOException {
-        return get(url, paramMap, null);
+        return get(url, paramMap, charset);
+    }
+
+    /**
+     * get请求，不带请求首部
+     *
+     * @param url      请求地址
+     * @param paramMap 参数
+     * @param charset  编码格式
+     * @return String
+     * @throws URISyntaxException
+     * @throws IOException
+     */
+    public static String get(String url, Map<String, Object> paramMap, String charset) throws URISyntaxException, IOException {
+        return get(url, paramMap, null, charset);
     }
 
     /**
      * jwt get请求
      *
-     * @param url
-     * @param paramMap
-     * @return
-     * @throws URISyntaxException, IOException
+     * @param url      请求地址
+     * @param paramMap 参数
+     * @param token    令牌
+     * @return JsonNode
+     * @throws URISyntaxException
+     * @throws IOException
      */
     public static String getByJwt(String url, Map<String, Object> paramMap, String token) throws URISyntaxException, IOException {
-        List<Header> headers = new ArrayList<>();
+        return getByJwt(url, paramMap, token, charset);
+    }
+
+    /**
+     * jwt get请求
+     *
+     * @param url      请求地址
+     * @param paramMap 参数
+     * @param token    令牌
+     * @param charset  编码格式
+     * @return JsonNode
+     * @throws URISyntaxException
+     * @throws IOException
+     */
+    public static String getByJwt(String url, Map<String, Object> paramMap, String token, String charset) throws URISyntaxException, IOException {
+        List<Header> headers = new ArrayList<Header>();
         headers.add(new BasicHeader("X-AUTH-TOKEN", token));
-        return get(url, paramMap, headers);
+        return get(url, paramMap, headers, charset);
+    }
+
+    /**
+     * jwt get请求
+     *
+     * @param url      请求地址
+     * @param paramMap 参数
+     * @param token    令牌
+     * @return JsonNode
+     * @throws URISyntaxException
+     * @throws IOException
+     */
+    public static JsonNode getByJwtToJsonNode(String url, Map<String, Object> paramMap, String token) throws URISyntaxException, IOException {
+        return getByJwtToJsonNode(url, paramMap, token, charset);
+    }
+
+    /**
+     * jwt get请求
+     *
+     * @param url      请求地址
+     * @param paramMap 参数
+     * @param token    令牌
+     * @param charset  编码格式
+     * @return JsonNode
+     * @throws URISyntaxException
+     * @throws IOException
+     */
+    public static JsonNode getByJwtToJsonNode(String url, Map<String, Object> paramMap, String token, String charset) throws URISyntaxException, IOException {
+        return JsonUtils.toJsonNode(getByJwt(url, paramMap, token, charset));
     }
 
     /**
@@ -306,16 +415,16 @@ public class HttpClientUtils {
             if (executionCount >= MAX_FAIL_RETRY_COUNT) {
                 return false;
             }
+            if (exception instanceof ConnectTimeoutException) {
+                // 连接被拒绝
+                return false;
+            }
             if (exception instanceof InterruptedIOException) {
                 // 超时
                 return false;
             }
             if (exception instanceof UnknownHostException) {
                 // 未知主机
-                return false;
-            }
-            if (exception instanceof ConnectTimeoutException) {
-                // 连接被拒绝
                 return false;
             }
             if (exception instanceof SSLException) {
