@@ -3,7 +3,7 @@ package com.lovelive.sys.service.impl;
 import com.lovelive.common.base.BaseService;
 import com.lovelive.common.uitls.CacheUtils;
 import com.lovelive.common.uitls.CollectionUtils;
-import com.lovelive.sys.dao.IMailConfigDao;
+import com.lovelive.sys.dao.IMailConfigDAO;
 import com.lovelive.sys.entity.MailConfig;
 import com.lovelive.sys.service.IMailConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +25,11 @@ import java.util.List;
 @Transactional(rollbackFor = Exception.class)
 public class MailConfigServiceImpl extends BaseService implements IMailConfigService {
 
-    private IMailConfigDao mailConfigDao;
+    private IMailConfigDAO mailConfigDAO;
 
     @Autowired
-    public MailConfigServiceImpl(IMailConfigDao mailConfigDao) {
-        this.mailConfigDao = mailConfigDao;
+    public MailConfigServiceImpl(IMailConfigDAO mailConfigDAO) {
+        this.mailConfigDAO = mailConfigDAO;
     }
 
     @Override
@@ -49,13 +49,13 @@ public class MailConfigServiceImpl extends BaseService implements IMailConfigSer
 
         Pageable pageable = PageRequest.of(0, 1, Sort.by("updateTime").descending());
 
-        List<MailConfig> list = mailConfigDao.findAll(specification, pageable).getContent();
+        List<MailConfig> list = mailConfigDAO.findAll(specification, pageable).getContent();
         return CollectionUtils.isEmpty(list) ? null : list.get(0);
     }
 
     @Override
     public MailConfig saveMailConfig(MailConfig mailConfig) {
-        mailConfig = mailConfigDao.save(mailConfig);
+        mailConfig = mailConfigDAO.save(mailConfig);
         CacheUtils.remove(CacheUtils.MAIL_CONFIG_CACHE);
         return mailConfig;
     }

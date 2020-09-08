@@ -11,13 +11,11 @@ import java.util.Date;
  * 消息
  *
  * @author dHe
- * @date 2019-4-26
  */
-@Entity
-@Table(name = "t_message")
+@Entity(name = "t_message")
 public class Message extends BaseEntity {
 
-    private static final long serialVersionUID = 2878229841387651280L;
+    private static final long serialVersionUID = -1434476022778890148L;
 
     /**
      * 消息类型
@@ -39,8 +37,8 @@ public class Message extends BaseEntity {
     /**
      * 发件人
      */
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "sender")
     private User sender;
 
     /**
@@ -48,7 +46,6 @@ public class Message extends BaseEntity {
      */
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "recipient")
     private User recipient;
 
     /**
@@ -68,7 +65,7 @@ public class Message extends BaseEntity {
         super();
     }
 
-    public Message(String id) {
+    public Message(Long id) {
         super(id);
     }
 

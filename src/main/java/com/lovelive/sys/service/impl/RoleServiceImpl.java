@@ -2,7 +2,7 @@ package com.lovelive.sys.service.impl;
 
 import com.lovelive.common.base.BaseService;
 import com.lovelive.common.uitls.CacheUtils;
-import com.lovelive.sys.dao.IRoleDao;
+import com.lovelive.sys.dao.IRoleDAO;
 import com.lovelive.sys.entity.Role;
 import com.lovelive.sys.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +22,16 @@ import java.util.List;
 @Transactional(rollbackFor = Exception.class)
 public class RoleServiceImpl extends BaseService implements IRoleService {
 
-    private IRoleDao roleDao;
+    private IRoleDAO roleDAO;
 
     @Autowired
-    public RoleServiceImpl(IRoleDao roleDao) {
-        this.roleDao = roleDao;
+    public RoleServiceImpl(IRoleDAO roleDAO) {
+        this.roleDAO = roleDAO;
     }
 
     @Override
     public Role saveRole(Role role) {
-        role = roleDao.save(role);
+        role = roleDAO.save(role);
         CacheUtils.remove(CacheUtils.ROLE_CACHE);
         return role;
     }
@@ -51,6 +51,6 @@ public class RoleServiceImpl extends BaseService implements IRoleService {
             }
         };
 
-        return roleDao.findAll(specification, Sort.by("sequence").ascending());
+        return roleDAO.findAll(specification, Sort.by("sequence").ascending());
     }
 }

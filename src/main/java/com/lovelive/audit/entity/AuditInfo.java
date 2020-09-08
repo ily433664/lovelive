@@ -10,13 +10,11 @@ import java.util.Set;
  * 审核信息
  *
  * @author dHe
- * @date 2019-8-9
  */
-@Entity
-@Table(name = "t_audit_info")
+@Entity(name = "t_audit_info")
 public class AuditInfo extends BaseEntity {
 
-    private static final long serialVersionUID = -5812297009811974724L;
+    private static final long serialVersionUID = 291431660282515039L;
 
     /**
      * 代码
@@ -38,7 +36,7 @@ public class AuditInfo extends BaseEntity {
         super();
     }
 
-    public AuditInfo(String id) {
+    public AuditInfo(Long id) {
         super(id);
     }
 

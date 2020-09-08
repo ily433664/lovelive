@@ -5,20 +5,17 @@ import com.lovelive.sys.enums.MessageTemplateTypeEnums;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
-import javax.persistence.Table;
 import javax.persistence.Transient;
 
 /**
  * 消息模板
  *
  * @author dHe
- * @date 2020-1-2
  */
-@Entity
-@Table(name = "t_message_template")
+@Entity(name = "t_message_template")
 public class MessageTemplate extends BaseEntity {
 
-    private static final long serialVersionUID = -2582611849993696773L;
+    private static final long serialVersionUID = -3485228860976537262L;
 
     /**
      * 类型
@@ -46,7 +43,7 @@ public class MessageTemplate extends BaseEntity {
         super();
     }
 
-    public MessageTemplate(String id) {
+    public MessageTemplate(Long id) {
         super(id);
     }
 

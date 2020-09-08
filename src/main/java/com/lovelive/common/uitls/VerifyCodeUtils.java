@@ -16,7 +16,6 @@ import java.util.Random;
  * 验证码工具类
  *
  * @author dhe
- * @date 2019-4-26
  */
 public class VerifyCodeUtils {
 

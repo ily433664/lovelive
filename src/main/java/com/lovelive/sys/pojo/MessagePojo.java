@@ -9,7 +9,6 @@ import java.util.Map;
  * 消息内容
  *
  * @author dHe
- * @date 2019-4-26
  */
 public class MessagePojo {
 

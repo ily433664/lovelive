@@ -11,47 +11,51 @@ import javax.persistence.Table;
  * 消息通知日志
  *
  * @author dHe
- * @date 2019-4-26
  */
-@Entity
+@Entity(name = "t_message_log")
 @Table(
-        name = "t_message_log",
         indexes = {
-                @Index(name = "idx_message_msgType", columnList = "msgType"),
-                @Index(name = "idx_message_sendSuccess", columnList = "sendSuccess")
+                @Index(name = "idx_msglog_msgType", columnList = "msgType"),
+                @Index(name = "idx_msglog_sendSuccess", columnList = "sendSuccess")
         }
 )
 public class MessageLog extends BaseEntity {
 
-    private static final long serialVersionUID = 2418871996420526954L;
+    private static final long serialVersionUID = -5981111680095829116L;
 
     /**
      * 标题
      */
     private String title;
+
     /**
      * 消息类型
      * MessageTypeEnums
      */
     private String msgType;
+
     /**
      * 内容
      */
     @Lob
     private String content;
+
     /**
      * 发件人名称
      */
     private String creator;
+
     /**
      * 发件人账号
      */
     private String creatorAccount;
+
     /**
      * 收件人名称
      */
     @Lob
     private String toName;
+
     /**
      * 收件人账号
      */
@@ -62,11 +66,13 @@ public class MessageLog extends BaseEntity {
      * 是否发送成功
      */
     private Boolean sendSuccess;
+
     /**
      * 返回消息
      */
     @Lob
     private String backMsg;
+
     /**
      * 消息代码
      */
@@ -76,7 +82,7 @@ public class MessageLog extends BaseEntity {
         super();
     }
 
-    public MessageLog(String id) {
+    public MessageLog(Long id) {
         super(id);
     }
 

@@ -8,7 +8,6 @@ import java.util.List;
  * lottery service
  *
  * @author dHe
- * @date 2019-8-9
  */
 public interface ILotteryService {
 
@@ -19,6 +18,6 @@ public interface ILotteryService {
      * @param num       抽奖次数
      * @return 奖品列表
      */
-    List<Prize> prizeDraw(String lotteryId, int num);
+    List<Prize> prizeDraw(Long lotteryId, int num);
 
 }

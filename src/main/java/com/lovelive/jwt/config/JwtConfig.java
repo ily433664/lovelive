@@ -8,7 +8,6 @@ import java.util.Date;
  * JWT 常规配置
  *
  * @author dHe
- * @date 2019-8-9
  */
 public class JwtConfig {
 

@@ -10,7 +10,6 @@ import javax.persistence.Table;
  * Token的Model类
  *
  * @author dHe
- * @date 2019-12-19
  */
 @Entity
 @Table(

@@ -11,7 +11,6 @@ import java.lang.annotation.Target;
  * 日志注解
  *
  * @author dHe
- * @date 2018-1-18
  */
 @Target({ElementType.PARAMETER, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

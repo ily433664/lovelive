@@ -7,7 +7,6 @@ import java.io.StringWriter;
  * 关于异常的工具类
  *
  * @author dHe
- * @date 2019-4-26
  */
 public class ExceptionUtils {
 

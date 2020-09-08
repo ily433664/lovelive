@@ -14,7 +14,6 @@ import java.util.Date;
  * 用户工具类
  *
  * @author dHe
- * @date 2018-1-18
  */
 @Component
 public class UserUtils {
@@ -48,7 +47,7 @@ public class UserUtils {
         return JwtUtils.getToken();
     }
 
-    public static String getUserId() {
+    public static Long getUserId() {
         User user = UserUtils.getUser();
         return user != null ? user.getId() : null;
     }

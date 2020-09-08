@@ -9,13 +9,11 @@ import javax.persistence.*;
  * 审核-角色
  *
  * @author dHe
- * @date 2019-8-9
  */
-@Entity
-@Table(name = "t_audit_role")
+@Entity(name = "t_audit_role")
 public class AuditRole extends BaseEntity {
 
-    private static final long serialVersionUID = 6428578342448380510L;
+    private static final long serialVersionUID = -5606752293289459873L;
 
     /**
      * 用户
@@ -33,7 +31,7 @@ public class AuditRole extends BaseEntity {
         super();
     }
 
-    public AuditRole(String id) {
+    public AuditRole(Long id) {
         super(id);
     }
 

@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
  * 正则表达式工具类
  *
  * @author dHe
- * @date 2019-12-19
  */
 public class RegExpValidatorUtil {
 

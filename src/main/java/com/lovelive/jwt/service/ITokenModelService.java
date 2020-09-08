@@ -6,7 +6,6 @@ import com.lovelive.jwt.entity.TokenModel;
  * token service
  *
  * @author dHe
- * @date 2019-12-19
  */
 public interface ITokenModelService {
 

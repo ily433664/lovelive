@@ -9,13 +9,11 @@ import javax.persistence.*;
  * 奖品记录
  *
  * @author dHe
- * @date 2019-5-9
  */
-@Entity
-@Table(name = "t_prize_record")
+@Entity(name = "t_prize_record")
 public class PrizeRecord extends BaseEntity {
 
-    private static final long serialVersionUID = 838500875004662938L;
+    private static final long serialVersionUID = 4521568068014986485L;
 
     /**
      * 用户
@@ -40,7 +38,7 @@ public class PrizeRecord extends BaseEntity {
         super();
     }
 
-    public PrizeRecord(String id) {
+    public PrizeRecord(Long id) {
         super(id);
     }
 

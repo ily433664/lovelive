@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
  * 字符串工具类, 继承org.apache.commons.lang3.StringUtils
  *
  * @author dHe
- * @date 2019-12-15
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
@@ -128,10 +127,10 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      */
     public static String getAreaLastName(String area) {
         String lastName = area;
-        String[] ssqs = new String[]{"省", "自治区", "市"};
+        String[] ssqs = new String[]{"省", "自治区", "市辖区", "市", "区"};
         for (String ssq : ssqs) {
             int index = lastName.indexOf(ssq);
-            if (lastName.contains(ssq) && index != (lastName.length() - 1)) {
+            if (lastName.contains(ssq) && index != (lastName.length() - ssq.length())) {
                 lastName = lastName.substring(index + ssq.length());
             }
         }

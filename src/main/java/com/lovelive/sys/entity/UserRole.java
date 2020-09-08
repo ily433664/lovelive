@@ -9,13 +9,11 @@ import javax.persistence.*;
  * 用户-角色
  *
  * @author dHe
- * @date 2019-4-26
  */
-@Entity
-@Table(name = "t_user_role")
+@Entity(name = "t_user_role")
 public class UserRole extends BaseEntity {
 
-    private static final long serialVersionUID = -1661366539649781545L;
+    private static final long serialVersionUID = -2913150068857916009L;
 
     /**
      * 用户
@@ -33,7 +31,7 @@ public class UserRole extends BaseEntity {
         super();
     }
 
-    public UserRole(String id) {
+    public UserRole(Long id) {
         super(id);
     }
 

@@ -10,13 +10,10 @@ import javax.validation.constraints.NotNull;
  * 审核记录
  *
  * @author dHe
- * @date 2019-8-9
  */
-@Entity
-@Table(name = "t_audit_record ")
+@Entity(name = "t_audit_record")
 public abstract class AuditRecord extends BaseEntity {
 
-    private static final long serialVersionUID = 83504985148449745L;
 
     /**
      * 所属审核对象
@@ -47,8 +44,12 @@ public abstract class AuditRecord extends BaseEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     private AuditAction auditAction;
 
-    private AuditRecord() {
+    public AuditRecord() {
         super();
+    }
+
+    public AuditRecord(Long id) {
+        super(id);
     }
 
     public AuditRecord(AuditTarget auditTarget, User auditUser, Integer auditStatus, String opinion, AuditAction auditAction) {

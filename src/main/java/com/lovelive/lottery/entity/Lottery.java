@@ -10,13 +10,11 @@ import java.util.*;
  * 抽奖池
  *
  * @author dHe
- * @date 2019-5-7
  */
-@Entity
-@Table(name = "t_lottery")
+@Entity(name = "t_lottery")
 public class Lottery extends BaseEntity {
 
-    private static final long serialVersionUID = -2799672479955217145L;
+    private static final long serialVersionUID = 834216377509557479L;
 
     /**
      * 所属项目
@@ -91,7 +89,7 @@ public class Lottery extends BaseEntity {
         super();
     }
 
-    public Lottery(String id) {
+    public Lottery(Long id) {
         super(id);
     }
 

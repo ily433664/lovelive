@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
  * 操作日志 controller
  *
  * @author dhe
- * @date 2018-1-18
  */
 @RestController
 @RequestMapping(value = "/operationLog")
@@ -27,7 +26,7 @@ public class OperationLogController extends BaseController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getOperationLogById(@PathVariable("id") String id) {
+    public ResponseEntity<?> getOperationLogById(@PathVariable("id") Long id) {
         try {
             OperationLog operationLog = operationLogService.getOperationLog(id);
             if (operationLog != null) {

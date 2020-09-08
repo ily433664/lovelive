@@ -25,7 +25,6 @@ import javax.servlet.http.HttpServletRequest;
  * token controller
  *
  * @author dHe
- * @date 2019-8-9
  */
 @Api(value = "token", description = "鉴权token接口", tags = "tokenAPI")
 @RestController

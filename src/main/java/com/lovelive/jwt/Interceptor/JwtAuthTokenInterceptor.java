@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
  * Restful请求， Token 校验规则拦截器（JWT）
  *
  * @author dHe
- * @date 2019-8-9
  */
 @Component
 public class JwtAuthTokenInterceptor implements HandlerInterceptor {

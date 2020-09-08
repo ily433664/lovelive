@@ -1,7 +1,7 @@
 package com.lovelive.sys.service.impl;
 
 import com.lovelive.common.base.BaseService;
-import com.lovelive.sys.dao.IFileAttachmentDao;
+import com.lovelive.sys.dao.IFileAttachmentDAO;
 import com.lovelive.sys.entity.FileAttachment;
 import com.lovelive.sys.service.IFileAttachmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,20 +12,20 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = Exception.class)
 public class FileAttachmentServiceImpl extends BaseService implements IFileAttachmentService {
 
-    private IFileAttachmentDao fileAttachmentDao;
+    private IFileAttachmentDAO fileAttachmentDAO;
 
     @Autowired
-    public FileAttachmentServiceImpl(IFileAttachmentDao fileAttachmentDao) {
-        this.fileAttachmentDao = fileAttachmentDao;
+    public FileAttachmentServiceImpl(IFileAttachmentDAO fileAttachmentDAO) {
+        this.fileAttachmentDAO = fileAttachmentDAO;
     }
 
     @Override
     public FileAttachment getFileAttachmentByMd5Hex(String md5Hex) {
-        return fileAttachmentDao.getFileAttachmentByMd5Hex(md5Hex);
+        return fileAttachmentDAO.getFileAttachmentByMd5Hex(md5Hex);
     }
 
     @Override
     public FileAttachment saveFileAttachment(FileAttachment fileAttachment) {
-        return fileAttachmentDao.save(fileAttachment);
+        return fileAttachmentDAO.save(fileAttachment);
     }
 }

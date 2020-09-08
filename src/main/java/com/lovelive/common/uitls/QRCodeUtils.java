@@ -20,7 +20,6 @@ import java.util.Hashtable;
  * 二维码生成和读的工具类
  *
  * @author dHe
- * @date 2019-5-10
  */
 public class QRCodeUtils {
 

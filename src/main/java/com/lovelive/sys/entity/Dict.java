@@ -10,13 +10,11 @@ import java.util.Set;
  * 字典
  *
  * @author dHe
- * @date 2019-4-29
  */
-@Entity
-@Table(name = "t_dict")
+@Entity(name = "t_dict")
 public class Dict extends BaseEntity {
 
-    private static final long serialVersionUID = 3505826402587752732L;
+    private static final long serialVersionUID = 7940244544921578962L;
 
     /**
      * 类型
@@ -39,9 +37,24 @@ public class Dict extends BaseEntity {
     private String shortName;
 
     /**
+     * 简简称
+     */
+    private String shortShortName;
+
+    /**
      * 英文名称
      */
     private String enName;
+
+    /**
+     * 英文简称
+     */
+    private String shortEnName;
+
+    /**
+     * 英文简简称
+     */
+    private String shortShortEnName;
 
     /**
      * 说明
@@ -65,7 +78,7 @@ public class Dict extends BaseEntity {
         super();
     }
 
-    public Dict(String id) {
+    public Dict(Long id) {
         super(id);
     }
 
@@ -101,12 +114,36 @@ public class Dict extends BaseEntity {
         this.shortName = shortName;
     }
 
+    public String getShortShortName() {
+        return shortShortName;
+    }
+
+    public void setShortShortName(String shortShortName) {
+        this.shortShortName = shortShortName;
+    }
+
     public String getEnName() {
         return enName;
     }
 
     public void setEnName(String enName) {
         this.enName = enName;
+    }
+
+    public String getShortEnName() {
+        return shortEnName;
+    }
+
+    public void setShortEnName(String shortEnName) {
+        this.shortEnName = shortEnName;
+    }
+
+    public String getShortShortEnName() {
+        return shortShortEnName;
+    }
+
+    public void setShortShortEnName(String shortShortEnName) {
+        this.shortShortEnName = shortShortEnName;
     }
 
     public String getDescription() {

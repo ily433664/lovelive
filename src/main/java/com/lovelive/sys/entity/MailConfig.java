@@ -3,19 +3,16 @@ package com.lovelive.sys.entity;
 import com.lovelive.common.base.BaseEntity;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * 邮箱配置
  *
  * @author dHe
- * @date 2019-12-15
  */
-@Entity
-@Table(name = "t_mail_config")
+@Entity(name = "t_mail_config")
 public class MailConfig extends BaseEntity {
 
-    private static final long serialVersionUID = -922460274751667271L;
+    private static final long serialVersionUID = 5811664751664161191L;
 
     /**
      * 服务器
@@ -50,7 +47,7 @@ public class MailConfig extends BaseEntity {
         super();
     }
 
-    public MailConfig(String id) {
+    public MailConfig(Long id) {
         super(id);
     }
 

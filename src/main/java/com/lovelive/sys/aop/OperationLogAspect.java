@@ -1,6 +1,6 @@
 package com.lovelive.sys.aop;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lovelive.common.uitls.NetworkUtils;
 import com.lovelive.sys.anno.LogAnnotation;
 import com.lovelive.sys.entity.OperationLog;
@@ -27,7 +27,6 @@ import java.util.Calendar;
  * AOP 日志记录
  *
  * @author dHe
- * @date 2018-01-18
  */
 @Aspect
 @Component
@@ -78,7 +77,7 @@ public class OperationLogAspect {
             operationLog.setOperIP(NetworkUtils.getIpAddress(request)); // IP地址
             operationLog.setOperMethod(target.getClass().getName() + "." + methodName); // 操作方法
             operationLog.setOperURI(request.getRequestURI());   // operURI
-            operationLog.setOperParameter(new Gson().toJson(request.getParameterMap()));    // 请求参数
+            operationLog.setOperParameter(new ObjectMapper().writeValueAsString(request.getParameterMap()));   // 请求参数
             operationLog.setUserAgent(request.getHeader("user-agent")); // 代理
 
             Long startTime = Calendar.getInstance().getTimeInMillis();

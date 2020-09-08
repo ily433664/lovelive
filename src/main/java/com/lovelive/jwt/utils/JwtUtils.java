@@ -23,7 +23,6 @@ import java.util.Date;
  * 用户工具类
  *
  * @author dHe
- * @date 2018-1-18
  */
 @Component
 public class JwtUtils {
@@ -44,7 +43,7 @@ public class JwtUtils {
      * @return
      */
     public static TokenModel createTokenModel(User user) {
-        if (user == null || StringUtils.isEmpty(user.getId())) {
+        if (user == null || user.getId() > 0) {
             throw new IllegalArgumentException("user can not null");
         }
 
@@ -52,14 +51,14 @@ public class JwtUtils {
         String secretKey = IdGenerator.uuid();
         // 生成 token
         String token = Jwts.builder()
-                .setId(user.getId())
+                .setId(user.getId().toString())
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date())
                 //.setExpiration(JwtConfig.EXPIRATION_DATE)
                 .signWith(JwtConfig.SIGNATURE_ALGORITHM, secretKey)
                 .compact();
         // 生成 TokenModel
-        TokenModel tokenModel = new TokenModel(user.getId(), secretKey, token);
+        TokenModel tokenModel = new TokenModel(user.getId().toString(), secretKey, token);
         return tokenModelService.saveTokenModel(tokenModel);
     }
 

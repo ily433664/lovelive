@@ -10,7 +10,6 @@ import java.io.Serializable;
  * 自定义主键策略
  *
  * @author dHe
- * @date 2019-4-26
  */
 public class CustomUUIDGenerator extends UUIDHexGenerator {
 

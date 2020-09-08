@@ -15,7 +15,6 @@ import java.util.Objects;
  * Entity支持类
  *
  * @author dHe
- * @date 2019-4-26
  */
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
@@ -23,9 +22,12 @@ public abstract class BaseEntity implements Serializable {
     public static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    protected Long id;
+
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "com.lovelive.common.base.CustomUUIDGenerator")
-    protected String id;
+    protected String uuid;
 
     /**
      * 状态
@@ -42,6 +44,7 @@ public abstract class BaseEntity implements Serializable {
     /**
      * 创建者
      */
+    @ManyToOne(fetch = FetchType.LAZY)
     protected User createBy;
 
     /**
@@ -54,6 +57,7 @@ public abstract class BaseEntity implements Serializable {
     /**
      * 更新者
      */
+    @ManyToOne(fetch = FetchType.LAZY)
     protected User updateBy;
 
     /**
@@ -69,6 +73,7 @@ public abstract class BaseEntity implements Serializable {
     /**
      * 删除者
      */
+    @ManyToOne(fetch = FetchType.LAZY)
     protected User deleteBy;
 
     /**
@@ -96,17 +101,25 @@ public abstract class BaseEntity implements Serializable {
         super();
     }
 
-    public BaseEntity(String id) {
+    public BaseEntity(Long id) {
         super();
         this.id = id;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public int getStatus() {

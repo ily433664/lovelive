@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
  * 日期工具类, 继承org.apache.commons.lang.time.DateUtils类
  *
  * @author dHe
- * @date 2019-12-20
  */
 public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 

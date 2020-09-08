@@ -8,13 +8,11 @@ import javax.persistence.*;
  * 操作日志
  *
  * @author dhe
- * @date 2018-1-18
  */
-@Entity
-@Table(name = "t_operation_log")
+@Entity(name = "t_operation_log")
 public class OperationLog extends BaseEntity {
 
-    private static final long serialVersionUID = -3035172162661548458L;
+    private static final long serialVersionUID = -601470489372751748L;
 
     /**
      * 操作人账号
@@ -88,7 +86,7 @@ public class OperationLog extends BaseEntity {
         super();
     }
 
-    public OperationLog(String id) {
+    public OperationLog(Long id) {
         super(id);
     }
 

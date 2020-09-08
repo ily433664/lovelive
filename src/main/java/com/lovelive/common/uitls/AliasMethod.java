@@ -7,7 +7,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Alias Method 概率算法
  *
  * @author dHe
- * @date 2019-5-10
  */
 public final class AliasMethod {
     /* The random number generator used to sample from the distribution. */

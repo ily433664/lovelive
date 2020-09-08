@@ -12,13 +12,11 @@ import java.util.Set;
  * 审核对象
  *
  * @author dHe
- * @date 2019-8-9
  */
-@Entity
-@Table(name = "t_audit_target")
+@Entity(name = "t_audit_target")
 public class AuditTarget extends BaseEntity {
 
-    private static final long serialVersionUID = 4442892203227139884L;
+    private static final long serialVersionUID = -5002975701573547354L;
 
     /**
      * 所属审核
@@ -49,7 +47,7 @@ public class AuditTarget extends BaseEntity {
         super();
     }
 
-    public AuditTarget(String id) {
+    public AuditTarget(Long id) {
         super(id);
     }
 

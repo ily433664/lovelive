@@ -19,7 +19,6 @@ import java.util.Calendar;
  * 附件 utils
  *
  * @author dHe
- * @date 2019-08-09
  */
 @Component
 public class FileAttachmentUtils {
@@ -29,54 +28,40 @@ public class FileAttachmentUtils {
     /**
      * @param fileAttachment 附件对象
      * @param multipartFile  上传的文件
-     * @param fileType       文件类型
-     * @param userId         用户id
-     * @param fileName       文件名称
-     * @param description    说明
-     * @param publicly       是否可以公开
      * @return
      * @throws IOException
      */
-    public static FileAttachment createFileAttachment(FileAttachment fileAttachment, MultipartFile multipartFile, String fileType, String userId, String fileName, String description, boolean publicly) throws IOException {
+    public static FileAttachment createFileAttachment(FileAttachment fileAttachment, MultipartFile multipartFile) throws IOException {
 
-        // 如果上传了附件
-        if (!multipartFile.isEmpty()) {
+        // 获取文件后缀
+        String suffix = FilenameUtils.getExtension(multipartFile.getOriginalFilename());
 
-            // 获取文件后缀
-            String suffix = FilenameUtils.getExtension(multipartFile.getOriginalFilename());
+        // 计算文件的md5
+        String md5Hex = DigestUtils.md5Hex(multipartFile.getInputStream());
+        FileAttachment temp = fileAttachmentService.getFileAttachmentByMd5Hex(md5Hex);
+        String filePath;
+        if (temp != null) {
+            filePath = temp.getFilePath();
+        } else {
+            Calendar calendar = Calendar.getInstance();
+            filePath = File.separator + calendar.get(Calendar.YEAR)
+                    + File.separator + (calendar.get(Calendar.MONTH) + 1) + "_" + calendar.get(Calendar.DAY_OF_MONTH)
+                    + new SimpleDateFormat("yyyyMMddHHmmss").format(Calendar.getInstance().getTime()) + "" + IdGenerator.uuid() + "." + suffix;
 
-            // 计算文件的md5
-            String md5Hex = DigestUtils.md5Hex(multipartFile.getInputStream());
-            FileAttachment temp = fileAttachmentService.getFileAttachmentByMd5Hex(md5Hex);
-            String filePath;
-            if (temp != null) {
-                filePath = temp.getFilePath();
-            } else {
-                Calendar calendar = Calendar.getInstance();
-                filePath = File.separator + calendar.get(Calendar.YEAR)
-                        + File.separator + (calendar.get(Calendar.MONTH) + 1) + "_" + calendar.get(Calendar.DAY_OF_MONTH)
-                        + new SimpleDateFormat("yyyyMMddHHmmss").format(Calendar.getInstance().getTime()) + "" + IdGenerator.uuid() + "." + suffix;
-
-                // 保存新的附件到服务器
-                File file = new File(filePath);
-                FileUtils.writeByteArrayToFile(file, multipartFile.getBytes());
-            }
-
-            // 如果之前没有上传过附件，则新建
-            if (fileAttachment == null) {
-                fileAttachment = new FileAttachment();
-            }
-
-            fileAttachment.setFileType(fileType);
-            fileAttachment.setUserId(userId);
-            fileAttachment.setFilePath(filePath);
-            fileAttachment.setFileName(fileName);
-            fileAttachment.setSuffix(suffix);
-            fileAttachment.setDescription(description);
-            fileAttachment.setPublicly(publicly);
-            fileAttachment.setFileSize(multipartFile.getSize());
-            fileAttachment.setMd5Hex(md5Hex);
+            // 保存新的附件到服务器
+            File file = new File(filePath);
+            FileUtils.writeByteArrayToFile(file, multipartFile.getBytes());
         }
+
+        // 如果之前没有上传过附件，则新建
+        if (fileAttachment == null) {
+            fileAttachment = new FileAttachment();
+        }
+
+        fileAttachment.setFilePath(filePath);
+        fileAttachment.setSuffix(suffix);
+        fileAttachment.setFileSize(multipartFile.getSize());
+        fileAttachment.setMd5Hex(md5Hex);
 
         return fileAttachment;
     }

@@ -18,29 +18,29 @@ import java.util.*;
 @Transactional(rollbackFor = Exception.class)
 public class LotteryServiceImpl extends BaseService implements ILotteryService {
 
-    private ILotteryProjectDao lotteryProjectDao;
+    private ILotteryProjectDAO lotteryProjectDAO;
 
-    private ILotteryDao lotteryDao;
+    private ILotteryDAO lotteryDAO;
 
-    private IPrizeChanceDao prizeChanceDao;
+    private IPrizeChanceDAO prizeChanceDAO;
 
-    private IPrizeDao prizeDao;
+    private IPrizeDAO prizeDAO;
 
-    private IPrizeRecordDao prizeRecordDao;
+    private IPrizeRecordDAO prizeRecordDAO;
 
     @Autowired
-    public LotteryServiceImpl(ILotteryProjectDao lotteryProjectDao, ILotteryDao lotteryDao, IPrizeChanceDao prizeChanceDao, IPrizeDao prizeDao, IPrizeRecordDao prizeRecordDao) {
-        this.lotteryProjectDao = lotteryProjectDao;
-        this.lotteryDao = lotteryDao;
-        this.prizeChanceDao = prizeChanceDao;
-        this.prizeDao = prizeDao;
-        this.prizeRecordDao = prizeRecordDao;
+    public LotteryServiceImpl(ILotteryProjectDAO lotteryProjectDAO, ILotteryDAO lotteryDAO, IPrizeChanceDAO prizeChanceDAO, IPrizeDAO prizeDAO, IPrizeRecordDAO prizeRecordDAO) {
+        this.lotteryProjectDAO = lotteryProjectDAO;
+        this.lotteryDAO = lotteryDAO;
+        this.prizeChanceDAO = prizeChanceDAO;
+        this.prizeDAO = prizeDAO;
+        this.prizeRecordDAO = prizeRecordDAO;
     }
 
     @Override
-    public List<Prize> prizeDraw(String lotteryId, int num) {
+    public List<Prize> prizeDraw(Long lotteryId, int num) {
 
-        Lottery lottery = lotteryDao.getLotteryById(lotteryId);
+        Lottery lottery = lotteryDAO.getLotteryById(lotteryId);
         if (lottery == null) {
             throw new NoSuchElementException("not find " + Lottery.class.getName());
         }
@@ -48,22 +48,22 @@ public class LotteryServiceImpl extends BaseService implements ILotteryService {
         List<Prize> resultList = new ArrayList<>();
 
         // 初始化抽奖 Alias
-        Map<String, Prize> prizeMap = new HashMap<>();
-        TreeMap<String, Double> prizeChanceMap = new TreeMap<>();
+        Map<Long, Prize> prizeMap = new HashMap<>();
+        TreeMap<Long, Double> prizeChanceMap = new TreeMap<>();
         lottery.getPrizeChances().forEach(prizeChance -> {
             prizeMap.put(prizeChance.getId(), prizeChance.getPrize());
             prizeChanceMap.put(prizeChance.getId(), prizeChance.getChance());
         });
 
         List<Double> list = new ArrayList<>(prizeChanceMap.values());
-        List<String> gifts = new ArrayList<>(prizeChanceMap.keySet());
+        List<Long> gifts = new ArrayList<>(prizeChanceMap.keySet());
         AliasMethod aliasMethod = new AliasMethod(new ArrayList<>(list));
 
         // 抽奖
         List<PrizeRecord> prizeRecordList = new ArrayList<>();
         for (int i = 1; i <= num; i++) {
             int index = aliasMethod.next();
-            String key = gifts.get(index);
+            Long key = gifts.get(index);
             if (!prizeMap.containsKey(key)) {
                 Prize prize = prizeMap.get(key);
                 resultList.add(prize);
@@ -72,7 +72,7 @@ public class LotteryServiceImpl extends BaseService implements ILotteryService {
                 throw new RuntimeException("系统出错");
             }
         }
-        prizeRecordDao.saveAll(prizeRecordList);
+        prizeRecordDAO.saveAll(prizeRecordList);
 
         return resultList;
     }

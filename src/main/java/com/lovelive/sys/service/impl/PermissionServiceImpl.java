@@ -2,7 +2,7 @@ package com.lovelive.sys.service.impl;
 
 import com.lovelive.common.base.BaseService;
 import com.lovelive.common.uitls.CacheUtils;
-import com.lovelive.sys.dao.IPermissionDao;
+import com.lovelive.sys.dao.IPermissionDAO;
 import com.lovelive.sys.entity.Permission;
 import com.lovelive.sys.service.IPermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +22,16 @@ import java.util.List;
 @Transactional(rollbackFor = Exception.class)
 public class PermissionServiceImpl extends BaseService implements IPermissionService {
 
-    private IPermissionDao permissionDao;
+    private IPermissionDAO permissionDAO;
 
     @Autowired
-    public PermissionServiceImpl(IPermissionDao permissionDao) {
-        this.permissionDao = permissionDao;
+    public PermissionServiceImpl(IPermissionDAO permissionDAO) {
+        this.permissionDAO = permissionDAO;
     }
 
     @Override
     public Permission savePermission(Permission permission) {
-        permission = permissionDao.save(permission);
+        permission = permissionDAO.save(permission);
         CacheUtils.remove(CacheUtils.PERMISSION_CACHE);
         return permission;
     }
@@ -51,6 +51,6 @@ public class PermissionServiceImpl extends BaseService implements IPermissionSer
             }
         };
 
-        return permissionDao.findAll(specification, Sort.by("sequence").ascending());
+        return permissionDAO.findAll(specification, Sort.by("sequence").ascending());
     }
 }

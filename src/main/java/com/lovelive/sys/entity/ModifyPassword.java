@@ -10,13 +10,11 @@ import javax.validation.constraints.NotNull;
  * 修改密码记录
  *
  * @author dHe
- * @date 2019-5-5
  */
-@Entity
-@Table(name = "t_modify_password")
+@Entity(name = "t_modify_password")
 public class ModifyPassword extends BaseEntity {
 
-    private static final long serialVersionUID = -3911015729385480428L;
+    private static final long serialVersionUID = -1946287517358902571L;
 
     /**
      * 用户
@@ -39,7 +37,7 @@ public class ModifyPassword extends BaseEntity {
         super();
     }
 
-    public ModifyPassword(String id) {
+    public ModifyPassword(Long id) {
         super(id);
     }
 

@@ -12,13 +12,11 @@ import java.util.Set;
  * 奖励
  *
  * @author dHe
- * @date 2019-5-9
  */
-@Entity
-@Table(name = "t_prize")
+@Entity(name = "t_prize")
 public class Prize extends BaseEntity {
 
-    private static final long serialVersionUID = -2540387804404152879L;
+    private static final long serialVersionUID = 3635118487901429735L;
 
     /**
      * 名称
@@ -53,7 +51,7 @@ public class Prize extends BaseEntity {
         super();
     }
 
-    public Prize(String id) {
+    public Prize(Long id) {
         this.id = id;
     }
 

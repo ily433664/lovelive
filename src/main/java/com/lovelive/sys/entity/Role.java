@@ -11,13 +11,11 @@ import java.util.Set;
  * 角色
  *
  * @author dHe
- * @date 2019-4-26
  */
-@Entity
-@Table(name = "t_role")
+@Entity(name = "t_role")
 public class Role extends BaseEntity {
 
-    private static final long serialVersionUID = -5338617333746248299L;
+    private static final long serialVersionUID = 1942590766310951367L;
 
     /**
      * 角色类型
@@ -54,7 +52,7 @@ public class Role extends BaseEntity {
         super();
     }
 
-    public Role(String id) {
+    public Role(Long id) {
         super(id);
     }
 

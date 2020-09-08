@@ -1,7 +1,7 @@
 package com.lovelive.sys.service.impl;
 
 import com.lovelive.common.base.BaseService;
-import com.lovelive.sys.dao.IMessageTemplateDao;
+import com.lovelive.sys.dao.IMessageTemplateDAO;
 import com.lovelive.sys.entity.MessageTemplate;
 import com.lovelive.sys.service.IMessageTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +12,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = Exception.class)
 public class MessageTemplateServiceImpl extends BaseService implements IMessageTemplateService {
 
-    private IMessageTemplateDao messageTemplateDao;
+    private IMessageTemplateDAO messageTemplateDAO;
 
     @Autowired
-    public MessageTemplateServiceImpl(IMessageTemplateDao messageTemplateDao) {
-        this.messageTemplateDao = messageTemplateDao;
+    public MessageTemplateServiceImpl(IMessageTemplateDAO messageTemplateDAO) {
+        this.messageTemplateDAO = messageTemplateDAO;
     }
 
     @Override
     public MessageTemplate saveMessageTemplate(MessageTemplate messageTemplate) {
-        return messageTemplateDao.save(messageTemplate);
+        return messageTemplateDAO.save(messageTemplate);
     }
 }

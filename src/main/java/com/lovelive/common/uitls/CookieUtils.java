@@ -11,7 +11,6 @@ import java.net.URLEncoder;
  * Cookie工具类
  *
  * @author dHe
- * @date 2019-12-17
  */
 public class CookieUtils {
 

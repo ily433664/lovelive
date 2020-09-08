@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
  * 注册 controller
  *
  * @author dHe
- * @date 2019-4-26
  */
 @RestController
 public class RegisterController extends BaseController {

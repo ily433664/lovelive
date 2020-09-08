@@ -10,13 +10,11 @@ import java.util.Set;
  * 操作权限
  *
  * @author dHe
- * @date 2019-4-26
  */
-@Entity
-@Table(name = "t_permission")
+@Entity(name = "t_permission")
 public class Permission extends BaseEntity {
 
-    private static final long serialVersionUID = 317142434223781832L;
+    private static final long serialVersionUID = 2600696712388056076L;
 
     /**
      * 代码
@@ -38,7 +36,7 @@ public class Permission extends BaseEntity {
         super();
     }
 
-    public Permission(String id) {
+    public Permission(Long id) {
         super(id);
     }
 

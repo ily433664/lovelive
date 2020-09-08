@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
  * 权限控制拦截器
  *
  * @author dHe
- * @date 2019-12-30
  */
 @Component
 public class SecurityInterceptor implements HandlerInterceptor {

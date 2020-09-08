@@ -3,7 +3,7 @@ package com.lovelive.sys.service.impl;
 import com.lovelive.common.base.BaseService;
 import com.lovelive.common.uitls.SQLHelper;
 import com.lovelive.common.uitls.StringUtils;
-import com.lovelive.sys.dao.IOperationLogDao;
+import com.lovelive.sys.dao.IOperationLogDAO;
 import com.lovelive.sys.entity.OperationLog;
 import com.lovelive.sys.service.IOperationLogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,21 +20,21 @@ import java.util.List;
 @Transactional(rollbackFor = Exception.class)
 public class OperationLogServiceImpl extends BaseService implements IOperationLogService {
 
-    private IOperationLogDao operationLogDao;
+    private IOperationLogDAO operationLogDAO;
 
     @Autowired
-    public OperationLogServiceImpl(IOperationLogDao operationLogDao) {
-        this.operationLogDao = operationLogDao;
+    public OperationLogServiceImpl(IOperationLogDAO operationLogDAO) {
+        this.operationLogDAO = operationLogDAO;
     }
 
     @Override
-    public OperationLog getOperationLog(String id) {
-        return operationLogDao.getOperationLogById(id);
+    public OperationLog getOperationLog(Long id) {
+        return operationLogDAO.getOperationLogById(id);
     }
 
     @Override
     public OperationLog saveOperationLog(OperationLog operationLog) {
-        return operationLogDao.save(operationLog);
+        return operationLogDAO.save(operationLog);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class OperationLogServiceImpl extends BaseService implements IOperationLo
 
         Pageable pageable = PageRequest.of(0, 10, Sort.by("createTime").descending().and(Sort.by("id").descending()));
 
-        return operationLogDao.findAll(specification, pageable);
+        return operationLogDAO.findAll(specification, pageable);
     }
 
 }

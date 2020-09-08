@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
  * 密码工具类
  *
  * @author dHe
- * @date 2019-4-26
  */
 @Component
 @Lazy(false)

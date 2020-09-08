@@ -16,7 +16,6 @@ import java.io.ByteArrayOutputStream;
  * 验证码 controller
  *
  * @author dhe
- * @date 2019-4-26
  */
 @Controller
 public class VerifyController extends BaseController {

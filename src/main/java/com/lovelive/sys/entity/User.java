@@ -10,12 +10,9 @@ import java.util.*;
  * 用户
  *
  * @author dHe
- * @date 2019-4-26
  */
-@Entity
-@Table(
-        name = "t_user",
-        indexes = {
+@Entity(name = "t_user")
+@Table(indexes = {
                 @Index(name = "idx_user_account", columnList = "account"),
                 @Index(name = "idx_user_userName", columnList = "userName")
         }
@@ -115,7 +112,7 @@ public class User extends BaseEntity {
         super();
     }
 
-    public User(String id) {
+    public User(Long id) {
         this.id = id;
     }
 

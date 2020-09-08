@@ -8,13 +8,11 @@ import javax.persistence.*;
  * 奖品概率
  *
  * @author dHe
- * @date 2019-5-9
  */
-@Entity
-@Table(name = "t_prize_chance")
+@Entity(name = "t_prize_chance")
 public class PrizeChance extends BaseEntity {
 
-    private static final long serialVersionUID = 7955761296470806889L;
+    private static final long serialVersionUID = 4030894624216921291L;
 
     /**
      * 概率
@@ -37,7 +35,7 @@ public class PrizeChance extends BaseEntity {
         super();
     }
 
-    public PrizeChance(String id) {
+    public PrizeChance(Long id) {
         super(id);
     }
 

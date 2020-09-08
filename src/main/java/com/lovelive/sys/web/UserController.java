@@ -6,16 +6,16 @@ import com.lovelive.sys.entity.RolePermission;
 import com.lovelive.sys.entity.User;
 import com.lovelive.sys.entity.UserRole;
 import com.lovelive.sys.enums.OperationTypeEnums;
-import com.lovelive.sys.service.IChangeLinkService;
+import com.lovelive.sys.service.IShortLinkService;
 import com.lovelive.sys.service.IUserService;
 import com.lovelive.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +27,6 @@ import java.util.Set;
  * 用户 controller
  *
  * @author dHe
- * @date 2019-4-26
  */
 @RestController
 @RequestMapping(value = "/user")
@@ -35,22 +34,22 @@ public class UserController extends BaseController {
 
     private IUserService userService;
 
-    private IChangeLinkService changeLinkService;
+    private IShortLinkService changeLinkService;
 
     @Autowired
-    public UserController(IUserService userService, IChangeLinkService changeLinkService) {
+    public UserController(IUserService userService, IShortLinkService changeLinkService) {
         this.userService = userService;
         this.changeLinkService = changeLinkService;
     }
 
-    @RequestMapping(value = "getUserNameById", method = RequestMethod.GET)
-    public ResponseEntity<?> getUserNameById(@RequestParam("id") String id, HttpServletRequest request, Model model) {
+    @RequestMapping(value = "getUserNameById/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserNameById(@PathVariable("id") Long id, HttpServletRequest request, Model model) {
         User user = userService.getUserById(id);
         return new ResponseEntity<>(user.getUsername(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "getUserNameByAccount", method = RequestMethod.GET)
-    public ResponseEntity<?> getUserNameByAccount(@RequestParam("account") String account, HttpServletRequest request, Model model) {
+    @RequestMapping(value = "getUserNameByAccount/{account}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserNameByAccount(@PathVariable("account") String account, HttpServletRequest request, Model model) {
         User user = userService.getUserByAccount(account);
         return new ResponseEntity<>(user.getUsername(), HttpStatus.OK);
     }

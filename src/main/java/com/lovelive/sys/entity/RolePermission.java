@@ -8,13 +8,12 @@ import javax.persistence.*;
  * 角色-操作权限
  *
  * @author dHe
- * @date 2019-4-26
  */
-@Entity
-@Table(name = "t_role_permission")
+@Entity(name = "t_role_permission")
+@Table
 public class RolePermission extends BaseEntity {
 
-    private static final long serialVersionUID = -720192517064543159L;
+    private static final long serialVersionUID = -3319475848564885869L;
 
     /**
      * 角色
@@ -32,7 +31,7 @@ public class RolePermission extends BaseEntity {
         super();
     }
 
-    public RolePermission(String id) {
+    public RolePermission(Long id) {
         super(id);
     }
 

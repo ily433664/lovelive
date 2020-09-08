@@ -2,7 +2,7 @@ package com.lovelive.jwt.exception;
 
 public class JwtAuthenticationException extends RuntimeException {
 
-    private static final long serialVersionUID = -8631354432884749019L;
+    private static final long serialVersionUID = 1L;
 
     public JwtAuthenticationException(String message) {
         super(message);

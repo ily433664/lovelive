@@ -6,7 +6,6 @@ import com.lovelive.sys.entity.User;
  * 用户 service
  *
  * @author dHe
- * @date 2019-4-26
  */
 public interface IUserService {
 
@@ -16,7 +15,7 @@ public interface IUserService {
      * @param id
      * @return
      */
-    User getUserById(String id);
+    User getUserById(Long id);
 
     /**
      * 根据账号获取用户
@@ -40,7 +39,7 @@ public interface IUserService {
      * @param id
      * @return
      */
-    int deleteUserById(String id);
+    int deleteUserById(Long id);
 
     /**
      * 保存用户

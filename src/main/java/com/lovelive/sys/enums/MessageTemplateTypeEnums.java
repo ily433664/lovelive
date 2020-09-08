@@ -9,7 +9,6 @@ import java.util.Map;
  * 消息模板类型
  *
  * @author dHe
- * @date 2020-1-2
  */
 
 public enum MessageTemplateTypeEnums {

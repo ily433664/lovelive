@@ -11,13 +11,11 @@ import java.util.Set;
  * 审核动作
  *
  * @author dHe
- * @date 2019-8-9
  */
-@Entity
-@Table(name = "t_audit_action")
+@Entity(name = "t_audit_action")
 public class AuditAction extends BaseEntity {
 
-    private static final long serialVersionUID = -2382803219151615974L;
+    private static final long serialVersionUID = -7675322593718686108L;
 
     /**
      * 代码
@@ -73,7 +71,7 @@ public class AuditAction extends BaseEntity {
         super();
     }
 
-    public AuditAction(String id) {
+    public AuditAction(Long id) {
         super(id);
     }
 

@@ -25,7 +25,6 @@ import java.util.List;
  * 文件工具类
  *
  * @author dHe
- * @date 2019-5-10
  */
 public class FileUtils extends org.apache.commons.io.FileUtils {
 
@@ -59,8 +58,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
      * @param coverlay     如果目标文件已存在，是否覆盖
      * @return 如果复制成功，则返回true，否则返回false
      */
-    public static boolean copyFileCover(String srcFileName,
-                                        String descFileName, boolean coverlay) {
+    public static boolean copyFileCover(String srcFileName, String descFileName, boolean coverlay) {
         File srcFile = new File(srcFileName);
         // 判断源文件是否存在
         if (!srcFile.exists()) {
@@ -147,8 +145,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
      * @return 如果复制成功返回true，否则返回false
      */
     public static boolean copyDirectory(String srcDirName, String descDirName) {
-        return FileUtils.copyDirectoryCover(srcDirName, descDirName,
-                false);
+        return FileUtils.copyDirectoryCover(srcDirName, descDirName, false);
     }
 
     /**
@@ -159,8 +156,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
      * @param coverlay    如果目标目录存在，是否覆盖
      * @return 如果复制成功返回true，否则返回false
      */
-    public static boolean copyDirectoryCover(String srcDirName,
-                                             String descDirName, boolean coverlay) {
+    public static boolean copyDirectoryCover(String srcDirName, String descDirName, boolean coverlay) {
         File srcDir = new File(srcDirName);
         // 判断源目录是否存在
         if (!srcDir.exists()) {

@@ -10,11 +10,20 @@ import org.springframework.stereotype.Component;
  * static变量需要用set注入，并且set方法不能是static
  *
  * @author dHe
- * @date 2019-5-5
  */
 @Component
-@PropertySource("customConfig.properties")
+@PropertySource("classpath:custom-config.properties")
 public class Global {
+
+    /**
+     * 文件存放路径
+     */
+    private static String filePath;
+
+    /**
+     * 返回数据显示说明
+     */
+    private static boolean responseExplainDisplay;
 
     /**
      * 验证码位数
@@ -31,10 +40,27 @@ public class Global {
      */
     private static int verifyHeight;
 
-    /**
-     * 文件存放路径
-     */
-    private static String filePath;
+    public static String getFilePath() {
+        if (StringUtils.isBlank(filePath)) {
+            filePath = System.getProperty("user.dir");
+            System.out.println("filePath is blank, user.dir : " + filePath);
+        }
+        return filePath;
+    }
+
+    @Value("${file.path}")
+    public void setFilePath(String filePath) {
+        Global.filePath = filePath;
+    }
+
+    public static boolean isResponseExplainDisplay() {
+        return responseExplainDisplay;
+    }
+
+    @Value("${response.explain.display}")
+    public void setResponseExplainDisplay(boolean responseExplainDisplay) {
+        Global.responseExplainDisplay = responseExplainDisplay;
+    }
 
     public static int getVerifySize() {
         return verifySize;
@@ -63,15 +89,4 @@ public class Global {
         Global.verifyHeight = verifyHeight;
     }
 
-    public static String getFilePath() {
-        if (StringUtils.isBlank(filePath)) {
-            filePath = System.getProperty("user.dir");
-        }
-        return filePath;
-    }
-
-    @Value("${file.path}")
-    public void setFilePath(String filePath) {
-        Global.filePath = filePath;
-    }
 }

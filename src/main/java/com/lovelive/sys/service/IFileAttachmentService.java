@@ -6,7 +6,6 @@ import com.lovelive.sys.entity.FileAttachment;
  * 文件 service
  *
  * @author dHe
- * @date 2019-5-5
  */
 public interface IFileAttachmentService {
 

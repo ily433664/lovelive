@@ -1,7 +1,7 @@
 package com.lovelive.sys.task;
 
 import com.lovelive.sys.service.IOperationLogService;
-import com.lovelive.sys.utils.MyThread;
+import com.lovelive.common.uitls.MyThread;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.InitBinder;
  * 定时任务
  *
  * @author dHe
- * @date 2019-12-24
  */
 @Component
 public class TimerTask {
@@ -53,7 +52,7 @@ public class TimerTask {
     }
 
     private void deleteOperationLog() {
-        operationLogService.getOperationLog("1");
+        operationLogService.getOperationLog(1L);
     }
 
     /**

@@ -8,7 +8,6 @@ import java.util.List;
  * 权限 service
  *
  * @author dHe
- * @date 2019-4-29
  */
 public interface IPermissionService {
 
